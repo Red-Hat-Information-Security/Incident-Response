@@ -38,7 +38,7 @@ def load_package_version(package_json_path):
 
 
 def load_malicious_npm_package_set():
-    with TemporaryDirectory(delete=True) as tmpdir:
+    with TemporaryDirectory() as tmpdir:
         print("Fetching malicious package db...")
         subprocess.run(
             [
