@@ -4,7 +4,10 @@ import os
 import shutil
 import subprocess
 import sys
+
+from dataclasses import dataclass
 from tempfile import TemporaryDirectory
+
 
 if not shutil.which("git"):
     print("=" * 79)
@@ -26,6 +29,16 @@ in https://github.com/ossf/malicious-packages with specific versions listed.
 ===============================================================================
 """
 
+@dataclass
+class PackageInfo:
+    __slots__ = ("name", "version")
+
+    name: str
+    version: str
+
+    def __str__(self):
+        return f"{self.name}@{self.version}"
+
 
 def load_json_file_path(json_file_path):
     try:
@@ -35,14 +48,17 @@ def load_json_file_path(json_file_path):
         return {}
 
 
-def load_package_version(package_json_path):
+def load_package_info(package_json_path):
     try:
         package_json_data = load_json_file_path(package_json_path)
         name = package_json_data["name"].lower()
         version = package_json_data["version"].lower()
 
         if name and version:
-            return f"{name}@{version}"
+            return PackageInfo(
+                name=name,
+                version=version,
+            )
     except Exception:
         pass
 
@@ -75,7 +91,7 @@ def load_malicious_npm_package_set():
             for affected in load_json_file_path(os.path.join(dirpath, filename)).get(
                 "affected", []
             )
-            for version in affected.get("versions", [])
+            for version in affected.get("versions", ['*'])
         }
 
 
@@ -91,13 +107,18 @@ def main():
     print("Scanning installed npm packages...")
     found = False
     for package_json_path in package_json_paths:
-        package_version = load_package_version(package_json_path)
-        if not package_version:
+        package_info = load_package_info(package_json_path)
+        if not package_info:
             continue
 
-        if package_version in malicious_packages:
-            print(package_version, "->", package_json_path)
+        if str(package_info) in malicious_packages:
+            print(package_info, "->", package_json_path)
             found = True
+
+        elif package_info.name + "@*" in malicious_packages:
+            print(package_info, "->", package_json_path)
+            found = True
+
 
     if not found:
         print("No malicious packages found")
