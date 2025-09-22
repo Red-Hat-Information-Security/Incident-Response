@@ -1,9 +1,21 @@
 #!/usr/bin/env python3
-import os
 import json
+import os
+import shutil
 import subprocess
-
+import sys
 from tempfile import TemporaryDirectory
+
+if not shutil.which("git"):
+    print("=" * 79)
+    print("\nERROR: This script requires the git command to be installed.")
+    print(
+        "\nHere are steps for installing git:",
+        "https://github.com/git-guides/install-git\n",
+    )
+    print("=" * 79)
+    sys.exit(1)
+
 
 disclaimer = """
 ===============================================================================
