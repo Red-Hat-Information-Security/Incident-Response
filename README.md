@@ -19,13 +19,19 @@ chmod +x npm-malicious-package-check.py
 DISCLAIMER
 -------------------------------------------------------------------------------
 This script can miss things. It's meant to be a basic check against packages
-in https://github.com/ossf/malicious-packages with specific versions listed.
+in the following sources with specific versions listed:
+
+- https://github.com/ossf/malicious-packages
+- https://github.com/red-hat-information-security/incident-response
 ===============================================================================
 
-Fetching malicious package db...
-Loading malicious package set...
+Fetching OSSF malicious package db...
+Loading OSSF malicious package db...
+Fetching RHIS malicious package db...
+Loading RHIS malicious package db...
 Scanning installed npm packages...
-No malicious packages found
+
+[PHEW] No malicious packages found
 ```
 
 #### Example output (with findings):
@@ -35,14 +41,30 @@ No malicious packages found
 DISCLAIMER
 -------------------------------------------------------------------------------
 This script can miss things. It's meant to be a basic check against packages
-in https://github.com/ossf/malicious-packages with specific versions listed.
+in the following sources with specific versions listed:
+
+- https://github.com/ossf/malicious-packages
+- https://github.com/red-hat-information-security/incident-response
 ===============================================================================
 
-
-Fetching malicious package db...
-Loading malicious package set...
+Fetching OSSF malicious package db...
+Loading OSSF malicious package db...
+Fetching RHIS malicious package db...
+Loading RHIS malicious package db...
 Scanning installed npm packages...
-@operato/headroom@9.0.35 -> /run/host/home/youruser/example/package.json
+
+[WARNING] Malicious Package(s) Found:
+
+- Package: zapier-scripts@7.8.4
+  Details: Campaign: Sha1-Hulud: The Second Coming
+  Location: /home/myuser/package.json
+
+[IMPORTANT] Please include the following in your ticket to InfoSec:
+
+- ALL OF THE SCRIPT OUTPUT ABOVE
+- Username: myuser
+- Hostname: myhost
+- Timestamp: 1764186765
 ```
 
 #### Disclaimer
@@ -50,3 +72,12 @@ Scanning installed npm packages...
 This is based on the OSSF's malicious packages repo and a few of our own
 specific package listings there may be new packages that haven't been added to
 the data sets yet.
+
+
+## Maintenance Note
+
+For those working on this project you can run `make sync` to refresh the OSSF
+malicious package listing in the repo and commit the changes. We are working
+from a snapshot of the repo instead of cloning it fresh to each person's
+machine since the repo has gotten huge and can cause clone issues. Also it's
+nice to remove the git dependency in the script.
