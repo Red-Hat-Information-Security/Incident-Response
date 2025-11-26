@@ -1,4 +1,4 @@
-campaign_name,package_name,version
+campaign_name,package_name,package_version
 "Sha1-Hulud: The Second Coming",02-echo,0.0.7
 "Sha1-Hulud: The Second Coming",@accordproject/concerto-analysis,3.24.1
 "Sha1-Hulud: The Second Coming",@accordproject/concerto-linter,3.24.1
