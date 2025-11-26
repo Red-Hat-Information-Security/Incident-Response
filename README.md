@@ -3,6 +3,7 @@
 ## Incident Response Tools
 
 ### npm-malicious-package-check.py
+
 Usage:
 - Download the script
 
@@ -12,6 +13,7 @@ chmod +x npm-malicious-package-check.py
 ```
 
 #### Example output (no findings):
+
 ```
 ===============================================================================
 DISCLAIMER
@@ -44,4 +46,7 @@ Scanning installed npm packages...
 ```
 
 #### Disclaimer
-This is based on the OSSF's malicious packages repo and as of this moment it doesn't seem like they have every version listed in the blog posts above.
+
+This is based on the OSSF's malicious packages repo and a few of our own
+specific package listings there may be new packages that haven't been added to
+the data sets yet.

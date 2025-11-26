@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -xeuo pipefail
+
+ossf_pkg_db_path="${HOME}/.cache/rhis/ossf-malicious-packages"
+trap rm_ossf_pkg_db EXIT # clean up when we're done
+
+rm_ossf_pkg_db() {
+  rm --preserve-root -rf "${ossf_pkg_db_path}"
+}
+
+clone_ossf_pkg_db() {
+  # Sparse clone the repo
+  git clone \
+    --sparse \
+    --depth=1 \
+    --filter=blob:none \
+    'https://github.com/ossf/malicious-packages.git' \
+    "${ossf_pkg_db_path}"
+
+  # Checkout just the npm files
+  git -C "${ossf_pkg_db_path}" sparse-checkout set 'osv/malicious/npm'
+}
+
+list_ossf_pkg_db_packages() {
+  find "${ossf_pkg_db_path}/osv/malicious/npm" -name '*.json' -type f -print0 \
+    | xargs --null jq -rc '.affected[] | select(.versions != null) | .package.name as $package_name | .versions[] | $package_name + "@" + .' --
+}
+
+rm_ossf_pkg_db
+clone_ossf_pkg_db
+list_ossf_pkg_db_packages > data/ossf-malicious-npm-packages.txt
