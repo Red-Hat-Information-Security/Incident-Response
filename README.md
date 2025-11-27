@@ -2,7 +2,22 @@
 
 ## Incident Response Tools
 
+### shai-hulud-package-check.py
+
+Checks specifically for packages affected by Shai-Hulud and for common indicators of compromise
+
+Usage:
+- Download the script
+
+```
+chmod +x shai-hulud-package-check.py
+./shai-hulud-package-check.py
+```
+
+
 ### npm-malicious-package-check.py
+
+General script that checks for malicious packages, including those affected by Shai-Hulud.
 
 Usage:
 - Download the script
