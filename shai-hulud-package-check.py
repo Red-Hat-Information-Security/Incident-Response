@@ -8,7 +8,7 @@ DESCRIPTION
 """
 
 import csv
-import glob
+import fnmatch
 import re
 import io
 import json
@@ -98,13 +98,14 @@ def _load_malicious_package_host_iocs():
         for ioc in iocs:
             if ioc["ioc_type"] in path_types:
                 # Expand user and turn globs into regexes
-                ioc["ioc_value"] = re.compile(
-                    glob.translate(
-                        os.path.expanduser(ioc["ioc_value"]),
-                        recursive=True,
-                        include_hidden=True,
+                glob_pattern = os.path.expanduser(ioc["ioc_value"])
+                regex_pattern = fnmatch.translate(glob_pattern)
+                if '**' in glob_pattern:
+                    regex_pattern = regex_pattern.replace(
+                        fnmatch.translate('*')[:-len('$')], # Find the pattern for a single '*'
+                        '.*'
                     )
-                )
+                ioc["ioc_value"] = re.compile(regex_pattern)
 
         return iocs
 
