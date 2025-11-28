@@ -37,6 +37,11 @@ checks packages with specific versions listed at the following source:
 
 - https://github.com/red-hat-information-security/incident-response
 ===============================================================================
+
+WARNING: On Mac you may be asked to provide your terminal program access to 
+other parts of the system. This script attempts to scan the whole system, this 
+is why you are seeing these requests. The scan will be more effective with 
+access to the whole system.
 """
 
 
