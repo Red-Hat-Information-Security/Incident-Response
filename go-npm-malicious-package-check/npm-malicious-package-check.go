@@ -433,12 +433,7 @@ func globToRegex(pattern string) (*regexp.Regexp, error) {
 		home, err := os.UserHomeDir()
 		if err == nil {
 			rest := strings.TrimPrefix(pattern, "~")
-			// Avoid double separators
-			if strings.HasPrefix(rest, "/") {
-				pattern = filepath.ToSlash(filepath.Join(home, rest[1:]))
-			} else {
-				pattern = filepath.ToSlash(filepath.Join(home, rest))
-			}
+			pattern = filepath.ToSlash(filepath.Clean(filepath.Join(home, rest)))
 		}
 	}
 
