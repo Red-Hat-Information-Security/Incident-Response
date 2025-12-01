@@ -21,6 +21,7 @@ import (
 	"io/fs"
 	"net/http"
 	"os"
+	"os/user"
 	"path/filepath"
 	"regexp"
 	"runtime"
@@ -125,12 +126,12 @@ func scanForIOCs(scanRoot string) ([]finding, error) {
 
 	var dirIOCs []ioc
 	var fileIOCs []ioc
-	for _, i := range hostIOCs {
-		switch strings.ToLower(i.Type) {
+	for _, ioc := range hostIOCs {
+		switch strings.ToLower(ioc.Type) {
 		case "directory":
-			dirIOCs = append(dirIOCs, i)
+			dirIOCs = append(dirIOCs, ioc)
 		case "file":
-			fileIOCs = append(fileIOCs, i)
+			fileIOCs = append(fileIOCs, ioc)
 		}
 	}
 
@@ -416,12 +417,6 @@ func scanHostPathIOCs(iocs []ioc, path string) *finding {
 }
 
 // globToRegex does a simple translation from a glob-style pattern to a regexp.
-// It supports:
-//   - ?  -> any single character
-//   - *  -> any number of non-separator characters
-//   - ** -> any number of characters, including separators
-//
-// It normalizes path separators to '/'.
 func globToRegex(pattern string) (*regexp.Regexp, error) {
 	pattern = strings.TrimSpace(pattern)
 	if pattern == "" {
@@ -440,45 +435,20 @@ func globToRegex(pattern string) (*regexp.Regexp, error) {
 	// Normalize to forward slashes
 	pattern = filepath.ToSlash(pattern)
 
-	var b strings.Builder
-	b.WriteString("^")
+	pattern = "^" + regexp.QuoteMeta(pattern)
+	pattern = strings.Replace(pattern, "**", "<glob><glob>", -1)
+	pattern = strings.Replace(pattern, "*", `[^\/]+`, -1)
+	pattern = strings.Replace(pattern, "<glob><glob>", ".*", -1)
+	pattern += "$"
 
-	metaChars := `.+()|^$[]{}\-`
-
-	for i := 0; i < len(pattern); {
-		c := pattern[i]
-
-		switch c {
-		case '*':
-			// Check for **
-			if i+1 < len(pattern) && pattern[i+1] == '*' {
-				b.WriteString(".*")
-				i += 2
-			} else {
-				b.WriteString("[^/]*")
-				i++
-			}
-		case '?':
-			b.WriteString(".")
-			i++
-		default:
-			if strings.ContainsRune(metaChars, rune(c)) {
-				b.WriteByte('\\')
-			}
-			b.WriteByte(c)
-			i++
-		}
-	}
-
-	b.WriteString("$")
-	return regexp.Compile(b.String())
+	return regexp.Compile(pattern)
 }
 
 func currentUsername() string {
 	if currentUser, err := user.Current(); err == nil {
-	    return currentUser.Username
+		return currentUser.Username
 	} else {
-	   return "unknown"
+		return "unknown"
 	}
 }
 
