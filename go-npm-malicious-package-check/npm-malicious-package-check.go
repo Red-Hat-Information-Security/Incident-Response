@@ -480,14 +480,11 @@ func globToRegex(pattern string) (*regexp.Regexp, error) {
 }
 
 func currentUsername() string {
-	// Try common env vars first to avoid requiring os/user which may not work in all envs
-	if u := os.Getenv("USER"); u != "" {
-		return u
+	if currentUser, err := user.Current(); err == nil {
+	    return currentUser.Username
+	} else {
+	   return "unknown"
 	}
-	if u := os.Getenv("USERNAME"); u != "" {
-		return u
-	}
-	return "unknown"
 }
 
 func currentHostname() string {
