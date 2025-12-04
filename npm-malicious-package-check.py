@@ -8,12 +8,13 @@ DESCRIPTION
 """
 
 import csv
-import glob
+import fnmatch
 import re
 import io
 import json
 import os
 import socket
+import ssl
 import sys
 import time
 
@@ -44,6 +45,28 @@ in the following sources with specific versions listed:
 """
 
 
+def _create_ssl_context():
+    """Create an SSL context for HTTPS requests.
+
+    Tries to use certifi if available, otherwise falls back to default context.
+    """
+    try:
+        import certifi
+        return ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        # Try to use the default context
+        try:
+            return ssl.create_default_context()
+        except Exception:
+            # If all else fails, print a helpful message
+            print("\nSSL Certificate Error: Unable to verify certificates.")
+            print("On macOS, you may need to run:")
+            print("  /Applications/Python*/Install\\ Certificates.command")
+            print("\nOr install certifi:")
+            print("  pip3 install certifi")
+            sys.exit(1)
+
+
 def _load_json_file_path(json_file_path):
     try:
         with open(json_file_path, encoding="UTF-8") as json_file:
@@ -68,8 +91,10 @@ def _load_package_id(package_json_path):
 
 def _load_malicious_npm_packages():
     malicious_packages = {}  # format malicious_packages["name@version] = "context"
+    ssl_context = _create_ssl_context()
+
     print("Fetching OSSF malicious package db...")
-    with request.urlopen(OSSF_MAL_PACKAGE_DB_URL) as response:
+    with request.urlopen(OSSF_MAL_PACKAGE_DB_URL, context=ssl_context) as response:
         if response.status == 200:
             print("Loading OSSF malicious package db...")
             context = "Source: OSSF Malicious Package DB"
@@ -80,7 +105,7 @@ def _load_malicious_npm_packages():
             print("Unable to fetch OSSF's malicious package db")
 
     print("Fetching RHIS malicious package db...")
-    with request.urlopen(RHIS_MAL_PACKAGE_DB_URL) as response:
+    with request.urlopen(RHIS_MAL_PACKAGE_DB_URL, context=ssl_context) as response:
         if response.status == 200:
             print("Loading RHIS malicious package db...")
             response_text = io.TextIOWrapper(response, encoding="UTF-8")
@@ -100,7 +125,8 @@ def _load_malicious_npm_packages():
 
 def _load_malicious_package_host_iocs():
     print("Fetching RHIS malicious package IOC db...")
-    with request.urlopen(RHIS_MAL_PACKAGE_IOC_DB_URL) as response:
+    ssl_context = _create_ssl_context()
+    with request.urlopen(RHIS_MAL_PACKAGE_IOC_DB_URL, context=ssl_context) as response:
         if response.status != 200:
             print("Unable to fetch RHIS's malicious package db")
             return []
@@ -112,13 +138,14 @@ def _load_malicious_package_host_iocs():
         for ioc in iocs:
             if ioc["ioc_type"] in path_types:
                 # Expand user and turn globs into regexes
-                ioc["ioc_value"] = re.compile(
-                    glob.translate(
-                        os.path.expanduser(ioc["ioc_value"]),
-                        recursive=True,
-                        include_hidden=True,
+                glob_pattern = os.path.expanduser(ioc["ioc_value"])
+                regex_pattern = fnmatch.translate(glob_pattern)
+                if '**' in glob_pattern:
+                    regex_pattern = regex_pattern.replace(
+                        fnmatch.translate('*')[:-len('$')], # Find the pattern for a single '*'
+                        '.*'
                     )
-                )
+                ioc["ioc_value"] = re.compile(regex_pattern)
 
         return iocs
 

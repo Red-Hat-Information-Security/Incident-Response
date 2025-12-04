@@ -14,6 +14,7 @@ import io
 import json
 import os
 import socket
+import ssl
 import sys
 import time
 
@@ -31,18 +32,40 @@ DISCLAIMER = """
 ===============================================================================
 DISCLAIMER
 -------------------------------------------------------------------------------
-This script can miss things. This script specifically looks for packages 
-affected by the Shai-Hulud campaign and other indicators of compromise. It 
+This script can miss things. This script specifically looks for packages
+affected by the Shai-Hulud campaign and other indicators of compromise. It
 checks packages with specific versions listed at the following source:
 
 - https://github.com/red-hat-information-security/incident-response
 ===============================================================================
 
-WARNING: On Mac you may be asked to provide your terminal program access to 
-other parts of the system. This script attempts to scan the whole system, this 
-is why you are seeing these requests. The scan will be more effective with 
+WARNING: On Mac you may be asked to provide your terminal program access to
+other parts of the system. This script attempts to scan the whole system, this
+is why you are seeing these requests. The scan will be more effective with
 access to the whole system.
 """
+
+
+def _create_ssl_context():
+    """Create an SSL context for HTTPS requests.
+
+    Tries to use certifi if available, otherwise falls back to default context.
+    """
+    try:
+        import certifi
+        return ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        # Try to use the default context
+        try:
+            return ssl.create_default_context()
+        except Exception:
+            # If all else fails, print a helpful message
+            print("\nSSL Certificate Error: Unable to verify certificates.")
+            print("On macOS, you may need to run:")
+            print("  /Applications/Python*/Install\\ Certificates.command")
+            print("\nOr install certifi:")
+            print("  pip3 install certifi")
+            sys.exit(1)
 
 
 def _load_json_file_path(json_file_path):
@@ -71,7 +94,8 @@ def _load_malicious_npm_packages():
     malicious_packages = {}  # format malicious_packages["name@version] = "context"
 
     print("Fetching RHIS malicious package db...")
-    with request.urlopen(RHIS_MAL_PACKAGE_DB_URL) as response:
+    ssl_context = _create_ssl_context()
+    with request.urlopen(RHIS_MAL_PACKAGE_DB_URL, context=ssl_context) as response:
         if response.status == 200:
             print("Loading RHIS malicious package db...")
             response_text = io.TextIOWrapper(response, encoding="UTF-8")
@@ -91,7 +115,8 @@ def _load_malicious_npm_packages():
 
 def _load_malicious_package_host_iocs():
     print("Fetching RHIS malicious package IOC db...")
-    with request.urlopen(RHIS_MAL_PACKAGE_IOC_DB_URL) as response:
+    ssl_context = _create_ssl_context()
+    with request.urlopen(RHIS_MAL_PACKAGE_IOC_DB_URL, context=ssl_context) as response:
         if response.status != 200:
             print("Unable to fetch RHIS's malicious package db")
             return []
