@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """
 USAGE
-    python3 shai-hulud-package-check.py
+    python3 shai-hulud-package-check.py [--include-remote] [scan_path]
 
 DESCRIPTION
     Walk the filesystem starting at / and look for Shai-Hulud affected NPM packages.
+    By default, skips network and virtual filesystems.
+
+OPTIONS
+    --include-remote    Include network and virtual filesystems in scan
+    scan_path          Directory to scan (default: /)
 """
 
+import argparse
 import csv
 import fnmatch
 import io
@@ -43,6 +49,61 @@ other parts of the system. This script attempts to scan the whole system, this
 is why you are seeing these requests. The scan will be more effective with
 access to the whole system.
 """
+
+# Filesystem types to skip by default (network and virtual filesystems)
+SKIP_FS_TYPES = {
+    'nfs', 'nfs4', 'cifs', 'smbfs', 'afs', 'ncpfs',  # Network filesystems
+    'proc', 'sysfs', 'devfs', 'devpts', 'tmpfs', 'ramfs',  # Virtual/pseudo filesystems
+    'debugfs', 'tracefs', 'securityfs', 'cgroup', 'cgroup2',
+    'pstore', 'mqueue', 'hugetlbfs', 'configfs', 'autofs', 'fusectl',
+    'binfmt_misc', 'rpc_pipefs', 'fuse.gvfsd-fuse', 'fuse.portal'
+}
+
+
+def _get_mount_points():
+    """Get a dictionary of mount points and their filesystem types."""
+    mount_points = {}
+
+    # Try to read /proc/mounts on Linux
+    try:
+        with open('/proc/mounts', 'r') as f:
+            for line in f:
+                parts = line.split()
+                if len(parts) >= 3:
+                    mount_point = parts[1]
+                    fs_type = parts[2]
+                    mount_points[mount_point] = fs_type
+    except (FileNotFoundError, PermissionError):
+        # Fallback: try using mount command or other methods
+        pass
+
+    return mount_points
+
+
+def _should_skip_path(path, mount_points, skip_remote):
+    """Check if a path should be skipped based on filesystem type."""
+    if not skip_remote:
+        return False
+
+    # Find the mount point for this path
+    path = os.path.abspath(path)
+
+    # Find the longest matching mount point
+    best_match = '/'
+    for mount_point in mount_points:
+        if path.startswith(mount_point) and len(mount_point) > len(best_match):
+            best_match = mount_point
+
+    # Check if the filesystem type should be skipped
+    fs_type = mount_points.get(best_match, '')
+
+    # Handle FUSE filesystems (they may have prefixes)
+    if fs_type.startswith('fuse.'):
+        # Skip most FUSE filesystems except local ones
+        if not any(fs_type.startswith(f'fuse.{local}') for local in ['ext', 'btrfs', 'xfs']):
+            return fs_type in SKIP_FS_TYPES or any(skip in fs_type for skip in ['gvfs', 'portal', 'remote'])
+
+    return fs_type in SKIP_FS_TYPES
 
 
 def _load_json_file_path(json_file_path):
@@ -144,14 +205,26 @@ def _scan_host_path_iocs(host_path_iocs, path):
     return None
 
 
-def _scan_for_iocs(scan_root):
+def _scan_for_iocs(scan_root, skip_remote=True):
     malicious_packages = _load_malicious_npm_packages()
     host_iocs = _load_malicious_package_host_iocs()
     host_file_iocs = [ioc for ioc in host_iocs if ioc["ioc_type"] == "file"]
     host_dir_iocs = [ioc for ioc in host_iocs if ioc["ioc_type"] == "directory"]
 
+    # Get mount points if we need to skip remote filesystems
+    mount_points = _get_mount_points() if skip_remote else {}
+
+    if skip_remote and mount_points:
+        print("Skipping network and virtual filesystems (use --include-remote to scan all)\n")
+
     print("Scanning for Indicators of Compromise (IoCs)...\n")
-    for dirpath, _, filenames in os.walk(scan_root):
+    for dirpath, dirnames, filenames in os.walk(scan_root):
+        # Check if we should skip this directory
+        if _should_skip_path(dirpath, mount_points, skip_remote):
+            # Don't descend into subdirectories
+            dirnames[:] = []
+            continue
+
         dir_finding = _scan_host_path_iocs(host_dir_iocs, dirpath)
         if dir_finding:
             yield dir_finding
@@ -170,11 +243,27 @@ def _scan_for_iocs(scan_root):
 
 def main():
     """main entrypoint to the script"""
-    scan_root = "/"
-    if len(sys.argv) == 2:
-        scan_root = os.path.abspath(sys.argv[1])
+    parser = argparse.ArgumentParser(
+        description='Scan for Shai-Hulud affected NPM packages and IoCs',
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        'scan_path',
+        nargs='?',
+        default='/',
+        help='Directory to scan (default: /)'
+    )
+    parser.add_argument(
+        '--include-remote',
+        action='store_true',
+        help='Include network and virtual filesystems in scan (by default they are skipped)'
+    )
 
-    findings = _scan_for_iocs(scan_root)
+    args = parser.parse_args()
+    scan_root = os.path.abspath(args.scan_path)
+    skip_remote = not args.include_remote
+
+    findings = _scan_for_iocs(scan_root, skip_remote=skip_remote)
     found = False
     for finding in findings:
         if not found:
