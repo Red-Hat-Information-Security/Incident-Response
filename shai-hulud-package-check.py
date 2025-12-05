@@ -9,10 +9,10 @@ DESCRIPTION
 
 import csv
 import fnmatch
-import re
 import io
 import json
 import os
+import re
 import socket
 import sys
 import time
@@ -31,16 +31,16 @@ DISCLAIMER = """
 ===============================================================================
 DISCLAIMER
 -------------------------------------------------------------------------------
-This script can miss things. This script specifically looks for packages 
-affected by the Shai-Hulud campaign and other indicators of compromise. It 
+This script can miss things. This script specifically looks for packages
+affected by the Shai-Hulud campaign and other indicators of compromise. It
 checks packages with specific versions listed at the following source:
 
 - https://github.com/red-hat-information-security/incident-response
 ===============================================================================
 
-WARNING: On Mac you may be asked to provide your terminal program access to 
-other parts of the system. This script attempts to scan the whole system, this 
-is why you are seeing these requests. The scan will be more effective with 
+WARNING: On Mac you may be asked to provide your terminal program access to
+other parts of the system. This script attempts to scan the whole system, this
+is why you are seeing these requests. The scan will be more effective with
 access to the whole system.
 """
 
@@ -105,10 +105,12 @@ def _load_malicious_package_host_iocs():
                 # Expand user and turn globs into regexes
                 glob_pattern = os.path.expanduser(ioc["ioc_value"])
                 regex_pattern = fnmatch.translate(glob_pattern)
-                if '**' in glob_pattern:
+                if "**" in glob_pattern:
                     regex_pattern = regex_pattern.replace(
-                        fnmatch.translate('*')[:-len('$')], # Find the pattern for a single '*'
-                        '.*'
+                        fnmatch.translate("*")[
+                            : -len("$")
+                        ],  # Find the pattern for a single '*'
+                        ".*",
                     )
                 ioc["ioc_value"] = re.compile(regex_pattern)
 
