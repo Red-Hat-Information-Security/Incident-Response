@@ -2,7 +2,8 @@
 
 ## Incident Response Tools
 
-### shai-hulud-package-check.py
+### Malicious NPM tools
+#### shai-hulud-package-check.py
 
 Checks specifically for packages affected by Shai-Hulud and for common indicators of compromise
 
@@ -15,7 +16,7 @@ chmod +x shai-hulud-package-check.py
 ```
 
 
-### npm-malicious-package-check.py
+#### npm-malicious-package-check.py
 
 General script that checks for malicious packages, including those affected by Shai-Hulud.
 
@@ -25,6 +26,18 @@ Usage:
 ```
 chmod +x npm-malicious-package-check.py
 ./npm-malicious-package-check.py
+```
+
+#### go-npm-malicious-package-check (Folder)
+
+The npm-malicious-package-check.py rewritten in Go to allow for easier binary distribution.
+
+Usage:
+ - Download the built binary
+ - Download the npm-malicious-package-check.go
+
+```
+go run npm-malicious-package-check.go
 ```
 
 #### Example output (no findings):
