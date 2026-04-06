@@ -21,11 +21,11 @@ from urllib import request
 
 RHIS_MAL_PACKAGE_DB_URL = (
     "https://raw.githubusercontent.com/Red-Hat-Information-Security/Incident-Response/"
-    "refs/heads/main/data/rhis-malicious-npm-packages.csv"
+    "refs/heads/main/data/rhis-malicious-packages.csv"
 )
 RHIS_MAL_PACKAGE_IOC_DB_URL = (
     "https://raw.githubusercontent.com/Red-Hat-Information-Security/Incident-Response/"
-    "refs/heads/main/data/rhis-malicious-npm-package-host-iocs.csv"
+    "refs/heads/main/data/rhis-host-iocs.csv"
 )
 DISCLAIMER = """
 ===============================================================================

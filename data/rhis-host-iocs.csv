@@ -1,0 +1,11 @@
+campaign_name,ioc_type,ioc_value,ioc_description
+Sha1-Hulud: The Second Coming,file,**/bun_environment.js,Malicious post-install script in node_modules directories
+Sha1-Hulud: The Second Coming,directory,~/.truffler-cache,Hidden directory created in user home for Trufflehog binary storage
+Sha1-Hulud: The Second Coming,directory,~/.truffler-cache/extract,Temporary directory used for binary extraction
+Sha1-Hulud: The Second Coming,directory,~/.truffler-cache/trufflehog,Downloaded Trufflehog binary (Linux/Mac)
+Sha1-Hulud: The Second Coming,directory,~/.truffler-cache/trufflehog.exe,Downloaded Trufflehog binary (Windows)
+Sha1-Hulud: The Second Coming,process,"del /F /Q /S ""%USERPROFILE%*""",Windows destructive payload command
+Sha1-Hulud: The Second Coming,process,shred -uvz -n 1,Linux/Mac destructive payload command
+Sha1-Hulud: The Second Coming,process,cipher /W:%USERPROFILE%,Windows secure deletion command in payload
+Sha1-Hulud: The Second Coming,command,curl -fsSL https://bun.sh/install | bash,Suspicious Bun installation during NPM package install
+Sha1-Hulud: The Second Coming,command,"powershell -c ""irm bun.sh/install.ps1|iex""",Windows Bun installation via PowerShell

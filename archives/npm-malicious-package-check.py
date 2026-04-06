@@ -25,11 +25,11 @@ OSSF_MAL_PACKAGE_DB_URL = (
 )
 RHIS_MAL_PACKAGE_DB_URL = (
     "https://raw.githubusercontent.com/Red-Hat-Information-Security/Incident-Response/"
-    "refs/heads/main/data/rhis-malicious-npm-packages.csv"
+    "refs/heads/main/data/rhis-malicious-packages.csv"
 )
-RHIS_MAL_PACKAGE_IOC_DB_URL = (
+RHIS_HOST_IOC_DB_URL = (
     "https://raw.githubusercontent.com/Red-Hat-Information-Security/Incident-Response/"
-    "refs/heads/main/data/rhis-malicious-npm-package-host-iocs.csv"
+    "refs/heads/main/data/rhis-host-iocs.csv"
 )
 DISCLAIMER = """
 ===============================================================================
@@ -85,6 +85,9 @@ def _load_malicious_npm_packages():
             print("Loading RHIS malicious package db...")
             response_text = io.TextIOWrapper(response, encoding="UTF-8")
             for row in csv.DictReader(response_text):
+                if row["package_type"].lower() != "npm":
+                    continue
+
                 package_id = f"{row['package_name']}@{row['package_version']}"
                 context = "Campaign: " + row["campaign_name"]
                 malicious_packages[package_id] = context
@@ -100,7 +103,7 @@ def _load_malicious_npm_packages():
 
 def _load_malicious_package_host_iocs():
     print("Fetching RHIS malicious package IOC db...")
-    with request.urlopen(RHIS_MAL_PACKAGE_IOC_DB_URL) as response:
+    with request.urlopen(RHIS_HOST_IOC_DB_URL) as response:
         if response.status != 200:
             print("Unable to fetch RHIS's malicious package db")
             return []
