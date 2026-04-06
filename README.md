@@ -82,11 +82,3 @@ Scanning for Indicators of Compromise (IoCs)...
 #### Disclaimer
 
 There may be new packages that haven't been added to the data sets yet.
-
-## Maintenance Note
-
-For those working on this project you can run `make sync` to refresh the OSSF
-malicious package listing in the repo and commit the changes. We are working
-from a snapshot of the repo instead of cloning it fresh to each person's
-machine since the repo has gotten huge and can cause clone issues. Also it's
-nice to remove the git dependency in the script.
