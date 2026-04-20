@@ -1,20 +1,91 @@
 campaign_name,ioc_type,ioc_value,ioc_description
-"Sha1-Hulud: The Second Coming",command,"powershell -c ""irm bun.sh/install.ps1|iex""",Windows Bun installation via PowerShell
-"Sha1-Hulud: The Second Coming",command,curl -fsSL https://bun.sh/install | bash,Suspicious Bun installation during NPM package install
-"Sha1-Hulud: The Second Coming",directory,~/.truffler-cache,Hidden directory created in user home for Trufflehog binary storage
-"Sha1-Hulud: The Second Coming",directory,~/.truffler-cache/extract,Temporary directory used for binary extraction
-"Sha1-Hulud: The Second Coming",directory,~/.truffler-cache/trufflehog,Downloaded Trufflehog binary (Linux/Mac)
-"Sha1-Hulud: The Second Coming",directory,~/.truffler-cache/trufflehog.exe,Downloaded Trufflehog binary (Windows)
-"Sha1-Hulud: The Second Coming",file,**/bun_environment.js,Malicious post-install script in node_modules directories
-"Sha1-Hulud: The Second Coming",process,"del /F /Q /S ""%USERPROFILE%*""",Windows destructive payload command
-"Sha1-Hulud: The Second Coming",process,cipher /W:%USERPROFILE%,Windows secure deletion command in payload
-"Sha1-Hulud: The Second Coming",process,shred -uvz -n 1,Linux/Mac destructive payload command
-"TeamPCP: supply chain attack",file,/tmp/.pg_state,State file tracking last downloaded payload URL
-"TeamPCP: supply chain attack",file,/tmp/pglog,Downloaded C2 agent binary
-"TeamPCP: supply chain attack",file,~/.config/sysmon/sysmon.py,RAT loader script
-"TeamPCP: supply chain attack",file,~/.config/systemd/user/sysmon.service,Persistence service unit
-"TeamPCP: supply chain attack",process,/tmp/pglog,Downloaded C2 agent binary
-"TeamPCP: supply chain attack",process,/tmp/tpcp.tar.gz,Encrypted exfiltration bundle
-"UNC1069: Axios compromise",file,/Library/Caches/com.apple.act.mond,RAT loader script
-"UNC1069: Axios compromise",file,6202033.ps1,RAT loader script
-"UNC1069: Axios compromise",file,/tmp/ld.py,RAT loader script
+Sha1-Hulud: The Second Coming,directory,**/.truffler-cache,Hidden directory created in user home for Trufflehog binary storage
+Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/extract,Temporary directory used for binary extraction
+Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/trufflehog,Downloaded Trufflehog binary (Linux/Mac)
+Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/trufflehog.exe,Downloaded Trufflehog binary (Windows)
+Sha1-Hulud: The Second Coming,file,**/bun_environment.js,Malicious post-install script in node_modules directories
+TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe,Telnyx Windows dropper (AdaptixC2) (source: ramimac)
+TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe.lock,lock file (12hr re-infection guard) (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/.config/audiomon/audiomon.py,Telnyx Linux backdoor (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/.config/sysmon/sysmon.js,checkmarx-util via VSCode ext (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/.config/sysmon/sysmon.py,RAT loader script
+TeamPCP: Supply Chain Attack,file,**/.local/share/pgmon/service.py,Supply Chain Attack backdoor (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/systemd/*/audiomon.service,Telnyx Linux persistence (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/systemd/*/internal-monitor.service,kamikaze v1 (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/systemd/*/pgmon.service,Supply Chain Attack npm (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/systemd/*/pgmonitor.service,kamikaze v3 worm (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/systemd/*/sysmon.py,developer machines (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/systemd/*/sysmon.service,KICS systemd (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/tmp/.initd_state,Telnyx state tracking (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/tmp/.pg_state,State file tracking last downloaded payload URL
+TeamPCP: Supply Chain Attack,file,**/tmp/pglog,Temp staging for C2 (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/var/lib/pgmon/pgmon.py,kamikaze v3 worm (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/var/lib/svc_internal/runner.py,kamikaze v1 (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:0880819ef821cff918960a39c1c1aada55a5593c61c608ea9215da858a86e349,Windows-64bit (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:0c0d206d5e68c0cf64d57ffa8bc5b1dad54f2dda52f24e96e02e237498cb9c3a,index.js variant (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:0d66d8c7e02574ff0d3443de0585af19c903d12466d88573ed82ec788655975c,checkmarx-util@1.0.4 (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:18a24f83e807479438dcab7a1804c51a00dafc1d526698a66e0640d1e5dd671a,entrypoint.sh (malicious) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:196b5e0e06424a02e360e28e08d7dcfab7ec8946af9477ca352c6cf6b7d4e9bd,Inner PE RAT (extracted) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:23b1ec58649170650110ecad96e5a9490d98146e105226a16d898fbe108139e5,_client.py v4.87.1 (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:26b689749bc57991cbae2aab8ab6cf5acab6c64db4829ba2b1ced6c60d99a7a8,reflective loader stub (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:30015dd1e2cf4dbd49fff9ddef2ad4622da2e60e5c0b6228595325532e948f14,Self-signed certificate (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:41c4f2f37c0b257d1e20fe167f2098da9d2e0a939b09ed3f63bc4fe010f8365c,Self-signed certificate (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:527f795a201a6bc114394c4cfd1c74dce97381989f51a4661aafbc93a4439e90,environmentAuthChecker.js (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:5ce544a8db5d0b0953c966384858e4e8a017e7acba2f5f6d0ac8f529d59939d8,Stage 3 credential harvester (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:5e2ba7c4c53fa6e0cef58011acdd50682cf83fb7b989712d2fcf1b5173bad956,deploy.js variant (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:61ff00a81b19624adaad425b9129ba2f312f4ab76fb5ddc2c628a5037d31a4ba,index.js variant (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:6328a34b26a63423b555a61f89a6a0525a534e9c88584c815d937910f1ddd538,macOS-ARM64 (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:65bd72fcddaf938cefdf55b3323ad29f649a65d4ddd6aea09afa974dfc7f105d,ast-results@2.53.0 (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:6cf223aea68b0e8031ff68251e30b6017a0513fe152e235c26f248ba1e15c92a,sysmon.py (persistence) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:71e35aef03099cd1f2d6446734273025a163597de93912df321ef118bf135238,litellm_init.pth (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:7290353a3bc2b18e9ea574d3294b09e28edaa6b038285bb101cf09760f187dcd,msbuild.exe (outer PE) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:7321caa303fe96ded0492c747d2f353c4f7d17185656fe292ab0a59e2bd0b8d9,telnyx-4.87.1.whl (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:744c9d61b66bcd2bb5474d9afeee6c00bb7e0cd32535781da188b80eb59383e0,cx-dev-assist@1.7.0 (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:7df6cef7ab9aae2ea08f2f872f6456b5d51d896ddda907a238cd6668ccdc4bb7,deploy.js variant (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:7e270255567866d37ad56e3f06977b695e39530eede74a10a0848ba71560cb45,embedded PNG (stego) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:81eda518ff6ebb25e6aa8d626b78cd2eb6cb38b5d7efb34e021289e76993414b,MidwestGrey.exe (Windows PE dropper) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:822dd269ec10459572dfaaefe163dae693c344249a0161953f0d5cdd110bd2a0,Linux-64bit (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:8395c3268d5c5dbae1c7c6d4bb3c318c752ba4608cfcd90eb97ffb94a910eac2,litellm-1.82.7.whl (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:84edce66f09c55bbb44754411bde4b092288d172734df62fac20d6f794b3a2ec,Linux Stage 2 loader (base64 decoded) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:887e1f5b5b50162a60bd03b66269e0ae545d0aef0583c1c5b00972152ad7e073,FreeBSD-64bit (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:8a2a05fd8bdc329c8a86d2d08229d167500c01ecad06e40477c49fb0096efdea,litellm-1.82.7.tar.gz (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:a0d229be8efcb2f9135e2ad55ba275b76ddcfeb55fa4370e0a522a5bdee0120b,proxy_server.py (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:a9235c0eb74a8e92e5a0150e055ee9dcdc6252a07785b6677a9ca831157833a5,telnyx-4.87.2.tar.gz (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:ab4c4aebb52027bf3d2f6b2dcef593a1a2cff415774ea4711f7d6e0aa1451d4e,_client.py v4.87.2 (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:b92bd082bbd7d238089b2bb87d9cbf01be1bf8ab7213b67e9d27108e052ef75c,shellcode (loader + DLL) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:bef7e2c5a92c4fa4af17791efc1e46311c0f304796f1172fce192f5efc40f5d7,Linux-ARM (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:c37c0ae9641d2e5329fcdee847a756bf1140fdb7f0b7c78a40fdc39055e7d926,index.js variant (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:cd08115806662469bbedec4b03f8427b97c8a4b3bc1442dc18b72b4e19395fe3,telnyx-4.87.2.whl (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:d2a0d5f564628773b6af7b9c11f6b86531a875bd2d186d7081ab62748a800ebb,litellm-1.82.8.whl (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:d39f4e7a218053cce976c91eacf184cf09a6960c731cc9d66d8e1a53406593a5,litellm-1.82.8.tar.gz (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:d5edd791021b966fb6af0ace09319ace7b97d6642363ef27b3d5056ca654a94c,Linux-s390x (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:d8caf4581c9f0000c7568d78fb7d2e595ab36134e2346297d78615942cbbd727,Self-signed certificate (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:dafc1cc5d39bc303562d8587b698b6351e843b77c01764efa8b423a36b88fa6d,file.dll (AdaptixC2 beacon) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:e4e3b176c1255666024d90392e09466a23bf6e8740bf589c6d1ccf2dfff451a4,Reflective PE loader shellcode (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:e6310d8a003d7ac101a6b1cd39ff6c6a88ee454b767c1bdce143e04bc1113243,macOS-64bit (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:e64e152afe2c722d750f10259626f357cdea40420c5eedae37969fbf13abbecf,Linux-ARM64 (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:e6912e3ec58120bf63edf2e4be6ff2f092c40cfbc655a12f4a463b2ef98d368e,Embedded PNG steganography (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:e9b1e069efc778c1e77fb3f5fcc3bd3580bbc810604cbf4347897ddb4b8c163b,index.js variant (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:ea47cebe2fbbf06c22b9bd9b9d72dd4fe64aed4e68675aa5e693312a773e09e9,kfhogts (Python trojan bundle) (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:ecce7ae5ffc9f57bb70efd3ea136a2923f701334a8cd47d4fbf13abbecf,Linux-PPC64LE (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:f398f06eefcd3558c38820a397e3193856e4e6e7c67f81ecc8e533275284b152,deploy.js variant (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:f66c1ea3b25ec95d0c6a07be92c761551e543a7b256f9c78a2ff781c77df7093,telnyx-4.87.1.tar.gz (source: ramimac)
+TeamPCP: Supply Chain Attack,hash,sha256:f7084b0229dce605ccc5506b14acd4d954a496da4b6134a294844ca8d601970d,Linux-32bit (source: ramimac)
+UNC1069: Axios compromise,file,%LOCALAPPDATA%\Microsoft\CLR_v4.0\UsageLogs\wt.exe.log,%LOCALAPPDATA%\Microsoft\CLR_v4.0\UsageLogs\wt.exe.log (source: endorlabs)
+UNC1069: Axios compromise,file,%PROGRAMDATA%\system.bat,Windows: persistence script (re-fetches payload on login) (source: datadog)
+UNC1069: Axios compromise,file,%PROGRAMDATA%\wt.exe,Windows: renamed copy of PowerShell (source: datadog)
+UNC1069: Axios compromise,file,**/Library/Caches/com.apple.act.mond,RAT loader script (source: datadog|endorlabs)"
+UNC1069: Axios compromise,file,**/tmp/.*.scpt,/tmp/.XXXXXX.scpt (temporary AppleScript files) (source: endorlabs)
+UNC1069: Axios compromise,file,**/tmp/ld.py,RAT loader script
+UNC1069: Axios compromise,file,**/6202033.ps1,RAT loader script (source: datadog|endorlabs)
+UNC1069: Axios compromise,hash,sha256:58401c195fe0a6204b42f5f90995ece5fab74ce7c69c67a24c61a057325af668,plain-crypto-js-4.2.1.tgz (source: endorlabs)
+UNC1069: Axios compromise,hash,sha256:59336a964f110c25c112bcc5adca7090296b54ab33fa95c0744b94f8a0d80c0f,axios-0.30.4.tgz (source: endorlabs)
+UNC1069: Axios compromise,hash,sha256:5bb67e88846096f1f8d42a0f0350c9c46260591567612ff9af46f98d1b7571cd,axios-1.14.1.tgz (source: endorlabs)
+UNC1069: Axios compromise,hash,sha256:617b67a8e1210e4fc87c92d1d1da45a2f311c08d26e89b12307cf583c900d101,Windows second-stage payload (PowerShell script) (source: datadog|endorlabs)
+UNC1069: Axios compromise,hash,sha256:92ff08773995ebc8d55ec4b8e1a225d0d1e51efa4ef88b8849d0071230c9645a,macOS second-stage payload (Mach-O universal binary) (source: datadog|endorlabs)
+UNC1069: Axios compromise,hash,sha256:9f914d42706fe215501044acd85a32d58aaef1419d404fddfa5d3b48f66ccd9f,wt.exe (LOLBIN — PowerShell copy) (source: endorlabs)
+UNC1069: Axios compromise,hash,sha256:e10b1fa84f1d6481625f741b69892780140d4e0e7769e7491e5f4d894c2e0e09,setup.js (Stage 1 dropper) (source: endorlabs)
+UNC1069: Axios compromise,hash,sha256:f7d335205b8d7b20208fb3ef93ee6dc817905dc3ae0c10a0b164f4e7d07121cd,system.bat (persistence loader) (source: endorlabs)
+UNC1069: Axios compromise,hash,sha256:fcb81618bb15edfdedfb638b4c08a2af9cac9ecfa551af135a8402bf980375cf,Linux second-stage payload (Python script) (source: datadog|endorlabs)
+UNC1069: Axios compromise,windows_registry_key,HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\MicrosoftUpdate,HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\MicrosoftUpdate (source: endorlabs)
+UNC1069: Axios compromise,windows_registry_key,HKCU\Software\Microsoft\Windows\CurrentVersion\Run\MicrosoftUpdate,Windows: Run key for persistence (source: datadog)

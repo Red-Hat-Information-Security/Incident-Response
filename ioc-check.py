@@ -173,7 +173,7 @@ def _load_malicious_package_host_iocs():
         for ioc in iocs:
             if ioc["ioc_type"] in path_types:
                 # Expand user and turn globs into regexes
-                glob_pattern = os.path.expanduser(ioc["ioc_value"])
+                glob_pattern = os.path.expanduser(os.path.expandvars(ioc["ioc_value"]))
                 regex_pattern = fnmatch.translate(glob_pattern)
                 if "**" in glob_pattern:
                     regex_pattern = regex_pattern.replace(
