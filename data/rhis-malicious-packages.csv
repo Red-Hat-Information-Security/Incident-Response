@@ -1054,7 +1054,6 @@ Sha1-Hulud: The Second Coming,npm,@zapier/zapier-sdk,0.15.7
 Sha1-Hulud: The Second Coming,npm,zuper-cli,1.0.1
 Sha1-Hulud: The Second Coming,npm,zuper-sdk,1.0.57
 Sha1-Hulud: The Second Coming,npm,zuper-stream,2.0.9
-TeamPCP: Supply Chain Attack,npm,@airtm/uuid-base32,
 TeamPCP: Supply Chain Attack,npm,@airtm/uuid-base32,1.0.2
 TeamPCP: Supply Chain Attack,npm,babel-plugin-react-pure-component,0.1.6
 TeamPCP: Supply Chain Attack,npm,cit-playwright-tests,1.0.1
@@ -1177,7 +1176,6 @@ TeamPCP: Supply Chain Attack,npm,eslint-config-ppf,0.128.2
 TeamPCP: Supply Chain Attack,npm,eslint-config-service-users,0.0.3
 TeamPCP: Supply Chain Attack,npm,jest-preset-ppf,0.0.2
 TeamPCP: Supply Chain Attack,npm,@leafnoise/mirage,2.0.3
-TeamPCP: Supply Chain Attack,npm,@opengov/*,
 TeamPCP: Supply Chain Attack,npm,@opengov/form-builder,0.12.3
 TeamPCP: Supply Chain Attack,npm,@opengov/form-renderer,0.2.20
 TeamPCP: Supply Chain Attack,npm,@opengov/form-utils,0.7.2
@@ -1220,8 +1218,13 @@ TeamPCP: Supply Chain Attack,vscode-extension,ast-results,2.53.0
 TeamPCP: Supply Chain Attack,vscode-extension,cx-dev-assist,1.7.0
 UNC1069: Axios compromise,npm,axios,0.30.4
 UNC1069: Axios compromise,npm,axios,1.14.1
+UNC1069: Axios compromise,npm,mgc,1.2.1
+UNC1069: Axios compromise,npm,mgc,1.2.2
+UNC1069: Axios compromise,npm,mgc,1.2.3
+UNC1069: Axios compromise,npm,mgc,1.2.4
 UNC1069: Axios compromise,npm,plain-crypto-js,4.2.0
 UNC1069: Axios compromise,npm,plain-crypto-js,4.2.1
+UNC1069: Axios compromise,npm,@qqbrowser/openclaw-qbot,0.0.130
 UNC1069: Axios compromise,npm,@shadanai/openclaw,2026.3.28-2
 UNC1069: Axios compromise,npm,@shadanai/openclaw,2026.3.28-3
 UNC1069: Axios compromise,npm,@shadanai/openclaw,2026.3.31-1
