@@ -1054,170 +1054,170 @@ Sha1-Hulud: The Second Coming,npm,@zapier/zapier-sdk,0.15.7
 Sha1-Hulud: The Second Coming,npm,zuper-cli,1.0.1
 Sha1-Hulud: The Second Coming,npm,zuper-sdk,1.0.57
 Sha1-Hulud: The Second Coming,npm,zuper-stream,2.0.9
-TeamPCP: CanisterWorm,npm,@airtm/uuid-base32,
-TeamPCP: CanisterWorm,npm,@airtm/uuid-base32,1.0.2
-TeamPCP: CanisterWorm,npm,babel-plugin-react-pure-component,0.1.6
-TeamPCP: CanisterWorm,npm,cit-playwright-tests,1.0.1
-TeamPCP: CanisterWorm,npm,@emilgroup/accounting-sdk,1.27.1
-TeamPCP: CanisterWorm,npm,@emilgroup/accounting-sdk,1.27.2
-TeamPCP: CanisterWorm,npm,@emilgroup/accounting-sdk,1.27.3
-TeamPCP: CanisterWorm,npm,@emilgroup/accounting-sdk-node,1.26.1
-TeamPCP: CanisterWorm,npm,@emilgroup/accounting-sdk-node,1.26.2
-TeamPCP: CanisterWorm,npm,@emilgroup/account-sdk,1.41.1
-TeamPCP: CanisterWorm,npm,@emilgroup/account-sdk,1.41.2
-TeamPCP: CanisterWorm,npm,@emilgroup/account-sdk-node,1.40.1
-TeamPCP: CanisterWorm,npm,@emilgroup/account-sdk-node,1.40.2
-TeamPCP: CanisterWorm,npm,@emilgroup/api-documentation,1.19.1
-TeamPCP: CanisterWorm,npm,@emilgroup/api-documentation,1.19.2
-TeamPCP: CanisterWorm,npm,@emilgroup/auth-sdk,1.25.1
-TeamPCP: CanisterWorm,npm,@emilgroup/auth-sdk,1.25.2
-TeamPCP: CanisterWorm,npm,@emilgroup/auth-sdk-node,1.21.1
-TeamPCP: CanisterWorm,npm,@emilgroup/auth-sdk-node,1.21.2
-TeamPCP: CanisterWorm,npm,@emilgroup/billing-sdk,1.56.1
-TeamPCP: CanisterWorm,npm,@emilgroup/billing-sdk,1.56.2
-TeamPCP: CanisterWorm,npm,@emilgroup/billing-sdk-node,1.57.1
-TeamPCP: CanisterWorm,npm,@emilgroup/billing-sdk-node,1.57.2
-TeamPCP: CanisterWorm,npm,@emilgroup/changelog-sdk-node,1.0.2
-TeamPCP: CanisterWorm,npm,@emilgroup/changelog-sdk-node,1.0.3
-TeamPCP: CanisterWorm,npm,@emilgroup/claim-sdk,1.41.1
-TeamPCP: CanisterWorm,npm,@emilgroup/claim-sdk,1.41.2
-TeamPCP: CanisterWorm,npm,@emilgroup/claim-sdk-node,1.39.1
-TeamPCP: CanisterWorm,npm,@emilgroup/claim-sdk-node,1.39.2
-TeamPCP: CanisterWorm,npm,@emilgroup/commission-sdk,1.0.1
-TeamPCP: CanisterWorm,npm,@emilgroup/commission-sdk,1.0.2
-TeamPCP: CanisterWorm,npm,@emilgroup/commission-sdk,1.0.3
-TeamPCP: CanisterWorm,npm,@emilgroup/commission-sdk-node,1.0.1
-TeamPCP: CanisterWorm,npm,@emilgroup/commission-sdk-node,1.0.2
-TeamPCP: CanisterWorm,npm,@emilgroup/commission-sdk-node,1.0.3
-TeamPCP: CanisterWorm,npm,@emilgroup/customer-sdk,1.54.1
-TeamPCP: CanisterWorm,npm,@emilgroup/customer-sdk,1.54.2
-TeamPCP: CanisterWorm,npm,@emilgroup/customer-sdk,1.54.3
-TeamPCP: CanisterWorm,npm,@emilgroup/customer-sdk,1.54.4
-TeamPCP: CanisterWorm,npm,@emilgroup/customer-sdk,1.54.5
-TeamPCP: CanisterWorm,npm,@emilgroup/customer-sdk-node,1.55.1
-TeamPCP: CanisterWorm,npm,@emilgroup/customer-sdk-node,1.55.2
-TeamPCP: CanisterWorm,npm,@emilgroup/discount-sdk,1.5.1
-TeamPCP: CanisterWorm,npm,@emilgroup/discount-sdk,1.5.2
-TeamPCP: CanisterWorm,npm,@emilgroup/discount-sdk,1.5.3
-TeamPCP: CanisterWorm,npm,@emilgroup/discount-sdk-node,1.5.1
-TeamPCP: CanisterWorm,npm,@emilgroup/discount-sdk-node,1.5.2
-TeamPCP: CanisterWorm,npm,@emilgroup/document-sdk,1.45.1
-TeamPCP: CanisterWorm,npm,@emilgroup/document-sdk,1.45.2
-TeamPCP: CanisterWorm,npm,@emilgroup/document-sdk-node,1.43.1
-TeamPCP: CanisterWorm,npm,@emilgroup/document-sdk-node,1.43.2
-TeamPCP: CanisterWorm,npm,@emilgroup/document-sdk-node,1.43.3
-TeamPCP: CanisterWorm,npm,@emilgroup/document-sdk-node,1.43.4
-TeamPCP: CanisterWorm,npm,@emilgroup/document-sdk-node,1.43.5
-TeamPCP: CanisterWorm,npm,@emilgroup/document-sdk-node,1.43.6
-TeamPCP: CanisterWorm,npm,@emilgroup/document-uploader,0.0.10
-TeamPCP: CanisterWorm,npm,@emilgroup/document-uploader,0.0.11
-TeamPCP: CanisterWorm,npm,@emilgroup/document-uploader,0.0.12
-TeamPCP: CanisterWorm,npm,@emilgroup/docxtemplater-util,1.1.2
-TeamPCP: CanisterWorm,npm,@emilgroup/docxtemplater-util,1.1.3
-TeamPCP: CanisterWorm,npm,@emilgroup/docxtemplater-util,1.1.4
-TeamPCP: CanisterWorm,npm,@emilgroup/gdv-sdk,2.6.1
-TeamPCP: CanisterWorm,npm,@emilgroup/gdv-sdk,2.6.2
-TeamPCP: CanisterWorm,npm,@emilgroup/gdv-sdk-node,2.6.1
-TeamPCP: CanisterWorm,npm,@emilgroup/gdv-sdk-node,2.6.2
-TeamPCP: CanisterWorm,npm,@emilgroup/gdv-sdk-node,2.6.3
-TeamPCP: CanisterWorm,npm,@emilgroup/insurance-sdk,1.97.1
-TeamPCP: CanisterWorm,npm,@emilgroup/insurance-sdk,1.97.2
-TeamPCP: CanisterWorm,npm,@emilgroup/insurance-sdk,1.97.3
-TeamPCP: CanisterWorm,npm,@emilgroup/insurance-sdk,1.97.4
-TeamPCP: CanisterWorm,npm,@emilgroup/insurance-sdk,1.97.5
-TeamPCP: CanisterWorm,npm,@emilgroup/insurance-sdk,1.97.6
-TeamPCP: CanisterWorm,npm,@emilgroup/insurance-sdk-node,1.95.1
-TeamPCP: CanisterWorm,npm,@emilgroup/insurance-sdk-node,1.95.2
-TeamPCP: CanisterWorm,npm,@emilgroup/notification-sdk-node,1.4.1
-TeamPCP: CanisterWorm,npm,@emilgroup/notification-sdk-node,1.4.2
-TeamPCP: CanisterWorm,npm,@emilgroup/numbergenerator-sdk-node,1.3.1
-TeamPCP: CanisterWorm,npm,@emilgroup/numbergenerator-sdk-node,1.3.2
-TeamPCP: CanisterWorm,npm,@emilgroup/numbergenerator-sdk-node,1.3.3
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-portal-sdk,1.1.1
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-portal-sdk,1.1.2
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-portal-sdk,1.1.3
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-portal-sdk-node,1.1.1
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-portal-sdk-node,1.1.2
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-sdk,1.19.1
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-sdk,1.19.2
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-sdk,1.19.3
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-sdk-node,1.19.1
-TeamPCP: CanisterWorm,npm,@emilgroup/partner-sdk-node,1.19.2
-TeamPCP: CanisterWorm,npm,@emilgroup/payment-sdk,1.15.1
-TeamPCP: CanisterWorm,npm,@emilgroup/payment-sdk,1.15.2
-TeamPCP: CanisterWorm,npm,@emilgroup/payment-sdk-node,1.23.1
-TeamPCP: CanisterWorm,npm,@emilgroup/payment-sdk-node,1.23.2
-TeamPCP: CanisterWorm,npm,@emilgroup/process-manager-sdk,1.4.1
-TeamPCP: CanisterWorm,npm,@emilgroup/process-manager-sdk,1.4.2
-TeamPCP: CanisterWorm,npm,@emilgroup/process-manager-sdk-node,1.13.1
-TeamPCP: CanisterWorm,npm,@emilgroup/process-manager-sdk-node,1.13.2
-TeamPCP: CanisterWorm,npm,@emilgroup/public-api-sdk,1.33.1
-TeamPCP: CanisterWorm,npm,@emilgroup/public-api-sdk,1.33.2
-TeamPCP: CanisterWorm,npm,@emilgroup/public-api-sdk-node,1.35.1
-TeamPCP: CanisterWorm,npm,@emilgroup/public-api-sdk-node,1.35.2
-TeamPCP: CanisterWorm,npm,@emilgroup/setting-sdk,0.2.1
-TeamPCP: CanisterWorm,npm,@emilgroup/setting-sdk,0.2.2
-TeamPCP: CanisterWorm,npm,@emilgroup/setting-sdk,0.2.3
-TeamPCP: CanisterWorm,npm,@emilgroup/setting-sdk-node,0.2.1
-TeamPCP: CanisterWorm,npm,@emilgroup/setting-sdk-node,0.2.2
-TeamPCP: CanisterWorm,npm,@emilgroup/setting-sdk-node,0.2.3
-TeamPCP: CanisterWorm,npm,@emilgroup/task-sdk,1.0.2
-TeamPCP: CanisterWorm,npm,@emilgroup/task-sdk,1.0.3
-TeamPCP: CanisterWorm,npm,@emilgroup/task-sdk,1.0.4
-TeamPCP: CanisterWorm,npm,@emilgroup/task-sdk-node,1.0.2
-TeamPCP: CanisterWorm,npm,@emilgroup/task-sdk-node,1.0.3
-TeamPCP: CanisterWorm,npm,@emilgroup/task-sdk-node,1.0.4
-TeamPCP: CanisterWorm,npm,@emilgroup/tenant-sdk,1.34.1
-TeamPCP: CanisterWorm,npm,@emilgroup/tenant-sdk,1.34.2
-TeamPCP: CanisterWorm,npm,@emilgroup/tenant-sdk-node,1.33.1
-TeamPCP: CanisterWorm,npm,@emilgroup/tenant-sdk-node,1.33.2
-TeamPCP: CanisterWorm,npm,@emilgroup/translation-sdk-node,1.1.1
-TeamPCP: CanisterWorm,npm,@emilgroup/translation-sdk-node,1.1.2
-TeamPCP: CanisterWorm,npm,eslint-config-ppf,0.128.2
-TeamPCP: CanisterWorm,npm,eslint-config-service-users,0.0.3
-TeamPCP: CanisterWorm,npm,jest-preset-ppf,0.0.2
-TeamPCP: CanisterWorm,npm,@leafnoise/mirage,2.0.3
-TeamPCP: CanisterWorm,npm,@opengov/*,
-TeamPCP: CanisterWorm,npm,@opengov/form-builder,0.12.3
-TeamPCP: CanisterWorm,npm,@opengov/form-renderer,0.2.20
-TeamPCP: CanisterWorm,npm,@opengov/form-utils,0.7.2
-TeamPCP: CanisterWorm,npm,opengov-k6-core,1.0.2
-TeamPCP: CanisterWorm,npm,@opengov/ppf-backend-types,1.141.2
-TeamPCP: CanisterWorm,npm,@opengov/ppf-eslint-config,0.1.11
-TeamPCP: CanisterWorm,npm,@opengov/qa-record-types-api,1.0.3
-TeamPCP: CanisterWorm,npm,@pypestream/floating-ui-dom,
-TeamPCP: CanisterWorm,npm,@pypestream/floating-ui-dom,2.15.1
-TeamPCP: CanisterWorm,npm,react-autolink-text,2.0.1
-TeamPCP: CanisterWorm,npm,react-leaflet-cluster-layer,0.0.4
-TeamPCP: CanisterWorm,npm,react-leaflet-heatmap-layer,2.0.1
-TeamPCP: CanisterWorm,npm,react-leaflet-marker-layer,0.1.5
-TeamPCP: CanisterWorm,npm,@teale.io/eslint-config,1.8.10
-TeamPCP: CanisterWorm,npm,@teale.io/eslint-config,1.8.11
-TeamPCP: CanisterWorm,npm,@teale.io/eslint-config,1.8.12
-TeamPCP: CanisterWorm,npm,@teale.io/eslint-config,1.8.13
-TeamPCP: CanisterWorm,npm,@teale.io/eslint-config,1.8.14
-TeamPCP: CanisterWorm,npm,@teale.io/eslint-config,1.8.15
-TeamPCP: CanisterWorm,npm,@teale.io/eslint-config,1.8.16
-TeamPCP: CanisterWorm,npm,@teale.io/eslint-config,1.8.9
-TeamPCP: CanisterWorm,npm,@virtahealth/substrate-root,1.0.1
-TeamPCP: CanisterWorm,oci,aquasec/trivy,0.69.4
-TeamPCP: CanisterWorm,oci,aquasec/trivy,0.69.5
-TeamPCP: CanisterWorm,oci,aquasec/trivy,0.69.6
-TeamPCP: CanisterWorm,oci,docker.io/aquasec/trivy,0.69.4
-TeamPCP: CanisterWorm,oci,docker.io/aquasec/trivy,0.69.5
-TeamPCP: CanisterWorm,oci,docker.io/aquasec/trivy,0.69.6
-TeamPCP: CanisterWorm,oci,ghcr.io/aquasecurity/trivy,0.69.4
-TeamPCP: CanisterWorm,oci,ghcr.io/aquasecurity/trivy,0.69.5
-TeamPCP: CanisterWorm,oci,ghcr.io/aquasecurity/trivy,0.69.6
-TeamPCP: CanisterWorm,oci,public.ecr.aws/aquasecurity/trivy,0.69.4
-TeamPCP: CanisterWorm,oci,public.ecr.aws/aquasecurity/trivy,0.69.5
-TeamPCP: CanisterWorm,oci,public.ecr.aws/aquasecurity/trivy,0.69.6
-TeamPCP: CanisterWorm,pypi,litellm,1.82.7
-TeamPCP: CanisterWorm,pypi,litellm,1.82.8
-TeamPCP: CanisterWorm,pypi,telnyx,4.87.1
-TeamPCP: CanisterWorm,pypi,telnyx,4.87.2
-TeamPCP: CanisterWorm,vscode-extension,ast-results,2.53.0
-TeamPCP: CanisterWorm,vscode-extension,cx-dev-assist,1.7.0
+TeamPCP: Supply Chain Attack,npm,@airtm/uuid-base32,
+TeamPCP: Supply Chain Attack,npm,@airtm/uuid-base32,1.0.2
+TeamPCP: Supply Chain Attack,npm,babel-plugin-react-pure-component,0.1.6
+TeamPCP: Supply Chain Attack,npm,cit-playwright-tests,1.0.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/accounting-sdk,1.27.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/accounting-sdk,1.27.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/accounting-sdk,1.27.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/accounting-sdk-node,1.26.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/accounting-sdk-node,1.26.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/account-sdk,1.41.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/account-sdk,1.41.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/account-sdk-node,1.40.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/account-sdk-node,1.40.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/api-documentation,1.19.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/api-documentation,1.19.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/auth-sdk,1.25.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/auth-sdk,1.25.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/auth-sdk-node,1.21.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/auth-sdk-node,1.21.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/billing-sdk,1.56.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/billing-sdk,1.56.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/billing-sdk-node,1.57.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/billing-sdk-node,1.57.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/changelog-sdk-node,1.0.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/changelog-sdk-node,1.0.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/claim-sdk,1.41.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/claim-sdk,1.41.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/claim-sdk-node,1.39.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/claim-sdk-node,1.39.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/commission-sdk,1.0.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/commission-sdk,1.0.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/commission-sdk,1.0.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/commission-sdk-node,1.0.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/commission-sdk-node,1.0.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/commission-sdk-node,1.0.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/customer-sdk,1.54.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/customer-sdk,1.54.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/customer-sdk,1.54.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/customer-sdk,1.54.4
+TeamPCP: Supply Chain Attack,npm,@emilgroup/customer-sdk,1.54.5
+TeamPCP: Supply Chain Attack,npm,@emilgroup/customer-sdk-node,1.55.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/customer-sdk-node,1.55.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/discount-sdk,1.5.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/discount-sdk,1.5.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/discount-sdk,1.5.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/discount-sdk-node,1.5.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/discount-sdk-node,1.5.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-sdk,1.45.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-sdk,1.45.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-sdk-node,1.43.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-sdk-node,1.43.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-sdk-node,1.43.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-sdk-node,1.43.4
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-sdk-node,1.43.5
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-sdk-node,1.43.6
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-uploader,0.0.10
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-uploader,0.0.11
+TeamPCP: Supply Chain Attack,npm,@emilgroup/document-uploader,0.0.12
+TeamPCP: Supply Chain Attack,npm,@emilgroup/docxtemplater-util,1.1.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/docxtemplater-util,1.1.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/docxtemplater-util,1.1.4
+TeamPCP: Supply Chain Attack,npm,@emilgroup/gdv-sdk,2.6.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/gdv-sdk,2.6.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/gdv-sdk-node,2.6.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/gdv-sdk-node,2.6.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/gdv-sdk-node,2.6.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/insurance-sdk,1.97.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/insurance-sdk,1.97.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/insurance-sdk,1.97.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/insurance-sdk,1.97.4
+TeamPCP: Supply Chain Attack,npm,@emilgroup/insurance-sdk,1.97.5
+TeamPCP: Supply Chain Attack,npm,@emilgroup/insurance-sdk,1.97.6
+TeamPCP: Supply Chain Attack,npm,@emilgroup/insurance-sdk-node,1.95.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/insurance-sdk-node,1.95.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/notification-sdk-node,1.4.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/notification-sdk-node,1.4.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/numbergenerator-sdk-node,1.3.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/numbergenerator-sdk-node,1.3.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/numbergenerator-sdk-node,1.3.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-portal-sdk,1.1.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-portal-sdk,1.1.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-portal-sdk,1.1.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-portal-sdk-node,1.1.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-portal-sdk-node,1.1.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-sdk,1.19.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-sdk,1.19.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-sdk,1.19.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-sdk-node,1.19.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/partner-sdk-node,1.19.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/payment-sdk,1.15.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/payment-sdk,1.15.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/payment-sdk-node,1.23.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/payment-sdk-node,1.23.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/process-manager-sdk,1.4.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/process-manager-sdk,1.4.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/process-manager-sdk-node,1.13.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/process-manager-sdk-node,1.13.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/public-api-sdk,1.33.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/public-api-sdk,1.33.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/public-api-sdk-node,1.35.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/public-api-sdk-node,1.35.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/setting-sdk,0.2.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/setting-sdk,0.2.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/setting-sdk,0.2.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/setting-sdk-node,0.2.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/setting-sdk-node,0.2.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/setting-sdk-node,0.2.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/task-sdk,1.0.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/task-sdk,1.0.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/task-sdk,1.0.4
+TeamPCP: Supply Chain Attack,npm,@emilgroup/task-sdk-node,1.0.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/task-sdk-node,1.0.3
+TeamPCP: Supply Chain Attack,npm,@emilgroup/task-sdk-node,1.0.4
+TeamPCP: Supply Chain Attack,npm,@emilgroup/tenant-sdk,1.34.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/tenant-sdk,1.34.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/tenant-sdk-node,1.33.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/tenant-sdk-node,1.33.2
+TeamPCP: Supply Chain Attack,npm,@emilgroup/translation-sdk-node,1.1.1
+TeamPCP: Supply Chain Attack,npm,@emilgroup/translation-sdk-node,1.1.2
+TeamPCP: Supply Chain Attack,npm,eslint-config-ppf,0.128.2
+TeamPCP: Supply Chain Attack,npm,eslint-config-service-users,0.0.3
+TeamPCP: Supply Chain Attack,npm,jest-preset-ppf,0.0.2
+TeamPCP: Supply Chain Attack,npm,@leafnoise/mirage,2.0.3
+TeamPCP: Supply Chain Attack,npm,@opengov/*,
+TeamPCP: Supply Chain Attack,npm,@opengov/form-builder,0.12.3
+TeamPCP: Supply Chain Attack,npm,@opengov/form-renderer,0.2.20
+TeamPCP: Supply Chain Attack,npm,@opengov/form-utils,0.7.2
+TeamPCP: Supply Chain Attack,npm,opengov-k6-core,1.0.2
+TeamPCP: Supply Chain Attack,npm,@opengov/ppf-backend-types,1.141.2
+TeamPCP: Supply Chain Attack,npm,@opengov/ppf-eslint-config,0.1.11
+TeamPCP: Supply Chain Attack,npm,@opengov/qa-record-types-api,1.0.3
+TeamPCP: Supply Chain Attack,npm,@pypestream/floating-ui-dom,
+TeamPCP: Supply Chain Attack,npm,@pypestream/floating-ui-dom,2.15.1
+TeamPCP: Supply Chain Attack,npm,react-autolink-text,2.0.1
+TeamPCP: Supply Chain Attack,npm,react-leaflet-cluster-layer,0.0.4
+TeamPCP: Supply Chain Attack,npm,react-leaflet-heatmap-layer,2.0.1
+TeamPCP: Supply Chain Attack,npm,react-leaflet-marker-layer,0.1.5
+TeamPCP: Supply Chain Attack,npm,@teale.io/eslint-config,1.8.10
+TeamPCP: Supply Chain Attack,npm,@teale.io/eslint-config,1.8.11
+TeamPCP: Supply Chain Attack,npm,@teale.io/eslint-config,1.8.12
+TeamPCP: Supply Chain Attack,npm,@teale.io/eslint-config,1.8.13
+TeamPCP: Supply Chain Attack,npm,@teale.io/eslint-config,1.8.14
+TeamPCP: Supply Chain Attack,npm,@teale.io/eslint-config,1.8.15
+TeamPCP: Supply Chain Attack,npm,@teale.io/eslint-config,1.8.16
+TeamPCP: Supply Chain Attack,npm,@teale.io/eslint-config,1.8.9
+TeamPCP: Supply Chain Attack,npm,@virtahealth/substrate-root,1.0.1
+TeamPCP: Supply Chain Attack,oci,aquasec/trivy,0.69.4
+TeamPCP: Supply Chain Attack,oci,aquasec/trivy,0.69.5
+TeamPCP: Supply Chain Attack,oci,aquasec/trivy,0.69.6
+TeamPCP: Supply Chain Attack,oci,docker.io/aquasec/trivy,0.69.4
+TeamPCP: Supply Chain Attack,oci,docker.io/aquasec/trivy,0.69.5
+TeamPCP: Supply Chain Attack,oci,docker.io/aquasec/trivy,0.69.6
+TeamPCP: Supply Chain Attack,oci,ghcr.io/aquasecurity/trivy,0.69.4
+TeamPCP: Supply Chain Attack,oci,ghcr.io/aquasecurity/trivy,0.69.5
+TeamPCP: Supply Chain Attack,oci,ghcr.io/aquasecurity/trivy,0.69.6
+TeamPCP: Supply Chain Attack,oci,public.ecr.aws/aquasecurity/trivy,0.69.4
+TeamPCP: Supply Chain Attack,oci,public.ecr.aws/aquasecurity/trivy,0.69.5
+TeamPCP: Supply Chain Attack,oci,public.ecr.aws/aquasecurity/trivy,0.69.6
+TeamPCP: Supply Chain Attack,pypi,litellm,1.82.7
+TeamPCP: Supply Chain Attack,pypi,litellm,1.82.8
+TeamPCP: Supply Chain Attack,pypi,telnyx,4.87.1
+TeamPCP: Supply Chain Attack,pypi,telnyx,4.87.2
+TeamPCP: Supply Chain Attack,vscode-extension,ast-results,2.53.0
+TeamPCP: Supply Chain Attack,vscode-extension,cx-dev-assist,1.7.0
 UNC1069: Axios compromise,npm,axios,0.30.4
 UNC1069: Axios compromise,npm,axios,1.14.1
 UNC1069: Axios compromise,npm,plain-crypto-js,4.2.0
