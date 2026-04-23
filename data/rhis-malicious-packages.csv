@@ -1055,6 +1055,13 @@ Sha1-Hulud: The Second Coming,npm,zuper-cli,1.0.1
 Sha1-Hulud: The Second Coming,npm,zuper-sdk,1.0.57
 Sha1-Hulud: The Second Coming,npm,zuper-stream,2.0.9
 TeamPCP: Supply Chain Attack,npm,@airtm/uuid-base32,1.0.2
+TeamPCP: Supply Chain Attack,npm,@automagik/genie,4.260421.33
+TeamPCP: Supply Chain Attack,npm,@automagik/genie,4.260421.34
+TeamPCP: Supply Chain Attack,npm,@automagik/genie,4.260421.35
+TeamPCP: Supply Chain Attack,npm,@automagik/genie,4.260421.36
+TeamPCP: Supply Chain Attack,npm,@automagik/genie,4.260421.37
+TeamPCP: Supply Chain Attack,npm,@automagik/genie,4.260421.38
+TeamPCP: Supply Chain Attack,npm,@automagik/genie,4.260421.39
 TeamPCP: Supply Chain Attack,npm,babel-plugin-react-pure-component,0.1.6
 TeamPCP: Supply Chain Attack,npm,cit-playwright-tests,1.0.1
 TeamPCP: Supply Chain Attack,npm,@emilgroup/accounting-sdk,1.27.1
@@ -1174,6 +1181,10 @@ TeamPCP: Supply Chain Attack,npm,@emilgroup/translation-sdk-node,1.1.1
 TeamPCP: Supply Chain Attack,npm,@emilgroup/translation-sdk-node,1.1.2
 TeamPCP: Supply Chain Attack,npm,eslint-config-ppf,0.128.2
 TeamPCP: Supply Chain Attack,npm,eslint-config-service-users,0.0.3
+TeamPCP: Supply Chain Attack,npm,@fairwords/loopback-connector-es,1.4.3
+TeamPCP: Supply Chain Attack,npm,@fairwords/loopback-connector-es,1.4.4
+TeamPCP: Supply Chain Attack,npm,@fairwords/websocket,1.0.38
+TeamPCP: Supply Chain Attack,npm,@fairwords/websocket,1.0.39
 TeamPCP: Supply Chain Attack,npm,jest-preset-ppf,0.0.2
 TeamPCP: Supply Chain Attack,npm,@leafnoise/mirage,2.0.3
 TeamPCP: Supply Chain Attack,npm,@opengov/form-builder,0.12.3
@@ -1183,6 +1194,11 @@ TeamPCP: Supply Chain Attack,npm,opengov-k6-core,1.0.2
 TeamPCP: Supply Chain Attack,npm,@opengov/ppf-backend-types,1.141.2
 TeamPCP: Supply Chain Attack,npm,@opengov/ppf-eslint-config,0.1.11
 TeamPCP: Supply Chain Attack,npm,@opengov/qa-record-types-api,1.0.3
+TeamPCP: Supply Chain Attack,npm,@openwebconcept/design-tokens,1.0.3
+TeamPCP: Supply Chain Attack,npm,@openwebconcept/theme-owc,1.0.3
+TeamPCP: Supply Chain Attack,npm,pgserve,1.1.11
+TeamPCP: Supply Chain Attack,npm,pgserve,1.1.12
+TeamPCP: Supply Chain Attack,npm,pgserve,1.1.13
 TeamPCP: Supply Chain Attack,npm,@pypestream/floating-ui-dom,
 TeamPCP: Supply Chain Attack,npm,@pypestream/floating-ui-dom,2.15.1
 TeamPCP: Supply Chain Attack,npm,react-autolink-text,2.0.1
