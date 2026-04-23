@@ -1,0 +1,10 @@
+#!/bin/sh
+set -xeu
+
+for csv_file in data/*.csv
+do
+	tmp_file="$(mktemp)"
+	head -n 1 -- "${csv_file}" | tr -d '\r' > "${tmp_file}"
+	tail -n +2 -- "${csv_file}" | sort -u | tr -d '\r' >> "${tmp_file}"
+	mv -- "${tmp_file}" "${csv_file}"
+done

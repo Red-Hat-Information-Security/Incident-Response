@@ -1,0 +1,3 @@
+.PHONY: format
+format:
+	scripts/$@

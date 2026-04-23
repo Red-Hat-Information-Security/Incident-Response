@@ -1,24 +1,25 @@
 campaign_name,ioc_type,ioc_value,ioc_description
-Sha1-Hulud: The Second Coming,directory,**/.truffler-cache,Hidden directory created in user home for Trufflehog binary storage
 Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/extract,Temporary directory used for binary extraction
+Sha1-Hulud: The Second Coming,directory,**/.truffler-cache,Hidden directory created in user home for Trufflehog binary storage
 Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/trufflehog,Downloaded Trufflehog binary (Linux/Mac)
 Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/trufflehog.exe,Downloaded Trufflehog binary (Windows)
 Sha1-Hulud: The Second Coming,file,**/bun_environment.js,Malicious post-install script in node_modules directories
-TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe,Telnyx Windows dropper (AdaptixC2) (source: ramimac)
 TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe.lock,lock file (12hr re-infection guard) (source: ramimac)
+TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe,Telnyx Windows dropper (AdaptixC2) (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/.config/audiomon/audiomon.py,Telnyx Linux backdoor (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/.config/sysmon/sysmon.js,checkmarx-util via VSCode ext (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/.config/sysmon/sysmon.py,RAT loader script
 TeamPCP: Supply Chain Attack,file,**/.local/share/pgmon/service.py,Supply Chain Attack backdoor (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/systemd/*/audiomon.service,Telnyx Linux persistence (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/systemd/*/internal-monitor.service,kamikaze v1 (source: ramimac)
-TeamPCP: Supply Chain Attack,file,**/systemd/*/pgmon.service,Supply Chain Attack npm (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/systemd/*/pgmonitor.service,kamikaze v3 worm (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/systemd/*/pgmon.service,Supply Chain Attack npm (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/systemd/*/sysmon.py,developer machines (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/systemd/*/sysmon.service,KICS systemd (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/tmp/.initd_state,Telnyx state tracking (source: ramimac)
-TeamPCP: Supply Chain Attack,file,**/tmp/.pg_state,State file tracking last downloaded payload URL
 TeamPCP: Supply Chain Attack,file,**/tmp/pglog,Temp staging for C2 (source: ramimac)
+TeamPCP: Supply Chain Attack,file,**/tmp/.pg_state,State file tracking last downloaded payload URL
+TeamPCP: Supply Chain Attack,file,**/tmp/tmp.987654321.lock,bitwarden-cli breach lock file(source: socket)
 TeamPCP: Supply Chain Attack,file,**/var/lib/pgmon/pgmon.py,kamikaze v3 worm (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/var/lib/svc_internal/runner.py,kamikaze v1 (source: ramimac)
 TeamPCP: Supply Chain Attack,hash,sha256:0880819ef821cff918960a39c1c1aada55a5593c61c608ea9215da858a86e349,Windows-64bit (source: ramimac)
@@ -71,13 +72,13 @@ TeamPCP: Supply Chain Attack,hash,sha256:ecce7ae5ffc9f57bb70efd3ea136a2923f70133
 TeamPCP: Supply Chain Attack,hash,sha256:f398f06eefcd3558c38820a397e3193856e4e6e7c67f81ecc8e533275284b152,deploy.js variant (source: ramimac)
 TeamPCP: Supply Chain Attack,hash,sha256:f66c1ea3b25ec95d0c6a07be92c761551e543a7b256f9c78a2ff781c77df7093,telnyx-4.87.1.tar.gz (source: ramimac)
 TeamPCP: Supply Chain Attack,hash,sha256:f7084b0229dce605ccc5506b14acd4d954a496da4b6134a294844ca8d601970d,Linux-32bit (source: ramimac)
+UNC1069: Axios compromise,file,**/6202033.ps1,RAT loader script (source: datadog|endorlabs)
+UNC1069: Axios compromise,file,**/Library/Caches/com.apple.act.mond,RAT loader script (source: datadog|endorlabs)"
 UNC1069: Axios compromise,file,%LOCALAPPDATA%\Microsoft\CLR_v4.0\UsageLogs\wt.exe.log,%LOCALAPPDATA%\Microsoft\CLR_v4.0\UsageLogs\wt.exe.log (source: endorlabs)
 UNC1069: Axios compromise,file,%PROGRAMDATA%\system.bat,Windows: persistence script (re-fetches payload on login) (source: datadog)
 UNC1069: Axios compromise,file,%PROGRAMDATA%\wt.exe,Windows: renamed copy of PowerShell (source: datadog)
-UNC1069: Axios compromise,file,**/Library/Caches/com.apple.act.mond,RAT loader script (source: datadog|endorlabs)"
-UNC1069: Axios compromise,file,**/tmp/.*.scpt,/tmp/.XXXXXX.scpt (temporary AppleScript files) (source: endorlabs)
 UNC1069: Axios compromise,file,**/tmp/ld.py,RAT loader script
-UNC1069: Axios compromise,file,**/6202033.ps1,RAT loader script (source: datadog|endorlabs)
+UNC1069: Axios compromise,file,**/tmp/.*.scpt,/tmp/.XXXXXX.scpt (temporary AppleScript files) (source: endorlabs)
 UNC1069: Axios compromise,hash,sha256:58401c195fe0a6204b42f5f90995ece5fab74ce7c69c67a24c61a057325af668,plain-crypto-js-4.2.1.tgz (source: endorlabs)
 UNC1069: Axios compromise,hash,sha256:59336a964f110c25c112bcc5adca7090296b54ab33fa95c0744b94f8a0d80c0f,axios-0.30.4.tgz (source: endorlabs)
 UNC1069: Axios compromise,hash,sha256:5bb67e88846096f1f8d42a0f0350c9c46260591567612ff9af46f98d1b7571cd,axios-1.14.1.tgz (source: endorlabs)
