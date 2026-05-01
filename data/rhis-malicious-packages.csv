@@ -1226,6 +1226,9 @@ TeamPCP: Supply Chain Attack,npm,@virtahealth/substrate-root,1.0.1
 TeamPCP: Supply Chain Attack,oci,aquasec/trivy,0.69.4
 TeamPCP: Supply Chain Attack,oci,aquasec/trivy,0.69.5
 TeamPCP: Supply Chain Attack,oci,aquasec/trivy,0.69.6
+TeamPCP: Supply Chain Attack,oci,checkmarx/kics,alpine
+TeamPCP: Supply Chain Attack,oci,checkmarx/kics,v2.1.20
+TeamPCP: Supply Chain Attack,oci,checkmarx/kics,v2.1.21
 TeamPCP: Supply Chain Attack,oci,docker.io/aquasec/trivy,0.69.4
 TeamPCP: Supply Chain Attack,oci,docker.io/aquasec/trivy,0.69.5
 TeamPCP: Supply Chain Attack,oci,docker.io/aquasec/trivy,0.69.6
@@ -1240,6 +1243,10 @@ TeamPCP: Supply Chain Attack,pypi,litellm,1.82.8
 TeamPCP: Supply Chain Attack,pypi,telnyx,4.87.1
 TeamPCP: Supply Chain Attack,pypi,telnyx,4.87.2
 TeamPCP: Supply Chain Attack,vscode-extension,ast-results,2.53.0
+TeamPCP: Supply Chain Attack,vscode-extension,checkmarx/ast-results,2.63.0
+TeamPCP: Supply Chain Attack,vscode-extension,checkmarx/ast-results,2.66.0
+TeamPCP: Supply Chain Attack,vscode-extension,checkmarx/cx-dev-assist,1.17.0
+TeamPCP: Supply Chain Attack,vscode-extension,checkmarx/cx-dev-assist,1.19.0
 TeamPCP: Supply Chain Attack,vscode-extension,cx-dev-assist,1.7.0
 UNC1069: Axios compromise,npm,axios,0.30.4
 UNC1069: Axios compromise,npm,axios,1.14.1
