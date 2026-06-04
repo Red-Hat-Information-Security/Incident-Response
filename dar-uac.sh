@@ -24,15 +24,19 @@ HOSTNAME=$(hostname)
 
 # Download UAC; do everything out of /tmp. Don't dirty up /
 
-cd /tmp
+if ! cd /tmp
+then
+	echo "Could not cd into tmp dir"
+	exit 1
+fi
 echo "Downloading UAC..."
 
 # Depending on the type of OS, we download UAC using the native tool.
 
 if   [[ $OSTYPE == "linux-gnu"* ]]; then
-        wget -q -O uac-main.tar.gz https://github.com/tclahr/uac/archive/refs/heads/master.tar.gz
+        wget -q -O uac-main.tar.gz https://github.com/tclahr/uac/archive/7376467c71fa4c789053ebfe6b7b69040b4be90c/master.tar.gz
 elif [[ $OSTYPE == "darwin"* ]]; then
-        curl -o uac-main.tar.gz -sLJO https://github.com/tclahr/uac/archive/refs/heads/master.tar.gz
+        curl -o uac-main.tar.gz -sLJO https://github.com/tclahr/uac/archive/7376467c71fa4c789053ebfe6b7b69040b4be90c/master.tar.gz
 fi
 
 sleep 5
@@ -56,7 +60,7 @@ echo "Starting UAC collection run at $(date +%Y-%m-%d-%H:%M:%S)"
 
 # Run UAC in background and log the results
 
- bash -c "cd $UACTMP ; ./uac -p ir_triage $UACTMP &" | tee $UACTMP/uac-$HOSTNAME-$PLATFORM-run-$START_TIME.lis
+ bash -c "cd $UACTMP ; ./uac -p ir_triage $UACTMP &" | tee "$UACTMP/uac-$HOSTNAME-$PLATFORM-run-$START_TIME.lis"
 
 # Ending UAC collection
 
