@@ -18,6 +18,8 @@ Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+\.vscode/setup\.
 Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+\.claude/setup\.mjs,Malicious VS Code task running node .claude/setup.mjs
 Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+index\.js,Malicious VS Code task running node index.js
 Sha1-Hulud: The Second Coming,file,**/.claude/execution.js,Obfuscated Shai-Hulud payload
+Sha1-Hulud: The Second Coming,file,**/.github/workflows/codeql.yml:(?=.*secrets)(?=.*format-results),Malicious codeql.yml with secrets exfiltration
+Sha1-Hulud: The Second Coming,file,**/package-lock.json,Lockfile referencing compromised package versions
 Sha1-Hulud: The Second Coming,file_regex,/(tmp|private/tmp|var/folders|private/var/folders)/.*p[a-z0-9]{10,13}\.js$,Suspicious payload JavaScript file
 TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe.lock,lock file (12hr re-infection guard) (source: ramimac)
 TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe,Telnyx Windows dropper (AdaptixC2) (source: ramimac)

@@ -1,8 +1,0 @@
-file_path
-.claude/index.js
-.github/setup.js
-.claude/setup.mjs
-.vscode/setup.mjs
-_index.js
-.github/workflows/codeql.yml
-package-lock.json
