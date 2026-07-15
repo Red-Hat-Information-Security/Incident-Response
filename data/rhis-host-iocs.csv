@@ -9,6 +9,16 @@ Sha1-Hulud: The Second Coming,file,**/.github/setup.js,Malicious GitHub setup sc
 Sha1-Hulud: The Second Coming,file,**/.claude/setup.mjs,Malicious Claude setup module
 Sha1-Hulud: The Second Coming,file,**/.vscode/setup.mjs,Malicious VS Code setup module
 Sha1-Hulud: The Second Coming,file,**/_index.js,Suspicious _index.js file
+Sha1-Hulud: The Second Coming,file,**/.claude/settings.json:node\s+\.claude/setup\.mjs,Malicious Claude Code hook running node .claude/setup.mjs
+Sha1-Hulud: The Second Coming,file,**/.claude/settings.json:node\s+\.vscode/setup\.mjs,Malicious Claude Code hook running node .vscode/setup.mjs
+Sha1-Hulud: The Second Coming,file,**/.claude/settings.json:node\s+\.github/setup\.js,Malicious Claude Code hook running node .github/setup.js
+Sha1-Hulud: The Second Coming,file,**/.claude/settings.json:node\s+index\.js,Malicious Claude Code hook running node index.js
+Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+\.github/setup\.js,Malicious VS Code task running node .github/setup.js
+Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+\.vscode/setup\.mjs,Malicious VS Code task running node .vscode/setup.mjs
+Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+\.claude/setup\.mjs,Malicious VS Code task running node .claude/setup.mjs
+Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+index\.js,Malicious VS Code task running node index.js
+Sha1-Hulud: The Second Coming,file,**/.claude/execution.js,Obfuscated Shai-Hulud payload
+Sha1-Hulud: The Second Coming,file_regex,/(tmp|private/tmp|var/folders|private/var/folders)/.*p[a-z0-9]{10,13}\.js$,Suspicious payload JavaScript file
 TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe.lock,lock file (12hr re-infection guard) (source: ramimac)
 TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe,Telnyx Windows dropper (AdaptixC2) (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/.config/audiomon/audiomon.py,Telnyx Linux backdoor (source: ramimac)

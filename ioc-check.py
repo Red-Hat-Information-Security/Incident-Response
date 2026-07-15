@@ -2,7 +2,7 @@
 """
 USAGE
     python3 ioc-check.py [scan_root]
-    python3 ioc-check.py --git-repo owner/repo [owner/repo2 ...]
+    python3 ioc-check.py --git-repo git@github.com:owner/repo.git [...]
     python3 ioc-check.py --github-org myorg [myorg2 ...]
 
 DESCRIPTION
@@ -42,18 +42,10 @@ RHIS_HOST_IOC_DB_URL = (
     "https://raw.githubusercontent.com/Red-Hat-Information-Security/Incident-Response/"
     f"{DB_REF}/data/rhis-host-iocs.csv"
 )
-
-file_iocs = {
-    ".claude/index.js",
-    ".github/setup.js",
-    ".claude/setup.mjs",
-    ".vscode/setup.mjs",
-    "_index.js",
-    ".github/workflows/codeql.yml",
-    "package-lock.json",
-}
-
-_PAYLOAD_JS_RE = re.compile(r"^p[a-z0-9]{10,13}\.js$")
+RHIS_GIT_FILE_IOC_DB_URL = (
+    "https://raw.githubusercontent.com/Red-Hat-Information-Security/Incident-Response/"
+    f"{DB_REF}/data/rhis-git-file-iocs.csv"
+)
 
 _TEMP_PREFIXES = ("/tmp", "/var/folders", "/private/tmp", "/private/var/folders")
 
@@ -192,9 +184,29 @@ def _load_malicious_package_host_iocs():
         path_types = {"directory", "file"}
 
         for ioc in iocs:
-            if ioc["ioc_type"] in path_types:
+            if ioc["ioc_type"] == "file_regex":
+                raw_value = ioc["ioc_value"]
+                content_regex = None
+
+                parts = raw_value.split(":", 1)
+                if len(parts) == 2:
+                    raw_value = parts[0]
+                    content_regex = re.compile(parts[1])
+
+                ioc["ioc_value"] = re.compile(raw_value)
+                ioc["content_regex"] = content_regex
+
+            elif ioc["ioc_type"] in path_types:
+                raw_value = ioc["ioc_value"]
+                content_regex = None
+
+                parts = raw_value.split(":", 1)
+                if len(parts) == 2 and not parts[0].startswith("%"):
+                    raw_value = parts[0]
+                    content_regex = re.compile(parts[1])
+
                 # Expand user and turn globs into regexes
-                glob_pattern = os.path.expanduser(os.path.expandvars(ioc["ioc_value"]))
+                glob_pattern = os.path.expanduser(os.path.expandvars(raw_value))
                 regex_pattern = fnmatch.translate(glob_pattern)
                 if "**" in glob_pattern:
                     regex_pattern = regex_pattern.replace(
@@ -203,6 +215,7 @@ def _load_malicious_package_host_iocs():
                         ".*",
                     )
                 ioc["ioc_value"] = re.compile(regex_pattern)
+                ioc["content_regex"] = content_regex
 
         return iocs
 
@@ -210,6 +223,15 @@ def _load_malicious_package_host_iocs():
 def _check_host_iocs(host_path_iocs, path):
     for ioc in host_path_iocs:
         if ioc["ioc_value"].match(path):
+            content_regex = ioc.get("content_regex")
+            if content_regex:
+                try:
+                    with open(path, encoding="UTF-8", errors="ignore") as f:
+                        if not content_regex.search(f.read()):
+                            continue
+                except Exception:
+                    continue
+
             return {
                 "path": path,
                 "finding": "Host IoC: " + ioc["ioc_description"],
@@ -217,6 +239,17 @@ def _check_host_iocs(host_path_iocs, path):
             }
 
     return None
+
+
+def _load_git_file_iocs():
+    print("Getting RHIS git file IOC db...")
+    with request.urlopen(RHIS_GIT_FILE_IOC_DB_URL) as response:
+        if response.status != 200:
+            print("Unable to fetch RHIS's git file IoC db")
+            return set()
+
+        response_text = io.TextIOWrapper(response, encoding="UTF-8")
+        return {row["file_path"] for row in csv.DictReader(response_text)}
 
 
 def _build_lockfile_regex(malicious_packages):
@@ -289,35 +322,6 @@ def _check_rcs_artifacts(filepath, filename, dirpath):
         except OSError:
             pass
 
-    if filepath.endswith("/.claude/settings.json"):
-        try:
-            with open(filepath, encoding="UTF-8") as f:
-                content = f.read()
-            suspicious = ["SessionStart", '"hooks"', "preCompact", "postToolUse"]
-            if any(s in content for s in suspicious):
-                yield {
-                    "path": filepath,
-                    "finding": "Suspicious hooks in Claude Code settings",
-                    "notes": "Campaign: Sha1-Hulud: The Second Coming",
-                }
-        except Exception:
-            pass
-
-    if filepath.endswith("/.vscode/tasks.json"):
-        try:
-            with open(filepath, encoding="UTF-8") as f:
-                content = f.read()
-            if "folderOpen" in content and (
-                "node index.js" in content or "node .github/setup.js" in content
-            ):
-                yield {
-                    "path": filepath,
-                    "finding": "Malicious folderOpen task in VS Code tasks.json",
-                    "notes": "Campaign: Sha1-Hulud: The Second Coming",
-                }
-        except Exception:
-            pass
-
     if _is_temp_path(filepath):
         if filename == "bun" and "/b-" in dirpath:
             yield {
@@ -326,20 +330,10 @@ def _check_rcs_artifacts(filepath, filename, dirpath):
                 "notes": "Campaign: Sha1-Hulud: The Second Coming",
             }
 
-        if _PAYLOAD_JS_RE.match(filename):
-            try:
-                if os.path.getsize(filepath) > 102_400:
-                    yield {
-                        "path": filepath,
-                        "finding": "Suspicious payload JavaScript file",
-                        "notes": "Campaign: Sha1-Hulud: The Second Coming",
-                    }
-            except OSError:
-                pass
 
 
 def _check_iocs(scan_root, malicious_packages, host_iocs):
-    host_file_iocs = [ioc for ioc in host_iocs if ioc["ioc_type"] == "file"]
+    host_file_iocs = [ioc for ioc in host_iocs if ioc["ioc_type"] in {"file", "file_regex"}]
     host_dir_iocs = [ioc for ioc in host_iocs if ioc["ioc_type"] == "directory"]
 
     print("Scanning for Indicators of Compromise (IoCs)...\n")
@@ -397,26 +391,33 @@ def check_host(host):
         return False
 
 
-def parse_repo_info(repo_info):
-    n = repo_info.count("/")
+def parse_repo_info(clone_url):
+    repo_host = None
+    repo_name = None
 
-    match n:
-        case 0:
+    if clone_url.startswith("https://") or clone_url.startswith("http://"):
+        parts = clone_url.split("//", 1)[1].split("/", 1)
+        repo_host = parts[0].lower()
+        repo_name = parts[1].removesuffix(".git") if len(parts) > 1 else None
+    elif ":" in clone_url and "@" in clone_url:
+        host_part = clone_url.split("@", 1)[1].split(":", 1)
+        repo_host = host_part[0].lower()
+        repo_name = host_part[1].removesuffix(".git") if len(host_part) > 1 else None
+    else:
+        logging.error("invalid clone url: %s", clone_url)
+        return None, None
+
+    if not repo_name or not repo_host:
+        return None, None
+
+    if repo_host not in valid_repo_hosts:
+        if check_host(repo_host):
+            valid_repo_hosts.add(repo_host)
+        else:
+            logging.error("invalid repo host provided: repo_host=%s", repo_host)
             return None, None
-        case 1:
-            return "github.com", repo_info
-        case _:
-            repo_host, repo_name = repo_info.split("/", 1)
-            repo_host = repo_host.lower()
 
-            if repo_host not in valid_repo_hosts:
-                if check_host(repo_host):
-                    valid_repo_hosts.add(repo_host)
-                else:
-                    logging.error("invalid repo host provided: repo_host=%s", repo_host)
-                    return None, None
-
-            return repo_host, repo_name
+    return repo_host, repo_name
 
 
 def read_repo_file(repo_path, commit_id, file_path):
@@ -431,9 +432,9 @@ def read_repo_file(repo_path, commit_id, file_path):
 
 
 def check_repo(args):
-    repo_info, lockfile_regex = args
+    clone_url, lockfile_regex, file_iocs = args
     results = []
-    repo_host, repo_name = parse_repo_info(repo_info)
+    repo_host, repo_name = parse_repo_info(clone_url)
     if not repo_name or not repo_host:
         return results
 
@@ -446,7 +447,7 @@ def check_repo(args):
             subprocess.run(
                 [
                     "git", "clone", "--mirror", "--filter=blob:none",
-                    f"git@{repo_host}:{repo_name}.git", repo_path,
+                    clone_url, repo_path,
                 ],
                 check=True,
             )
@@ -561,7 +562,7 @@ def _list_github_org_repos(org_name):
                 data = json.loads(response.read())
                 if not data:
                     break
-                repos.extend(r["full_name"] for r in data)
+                repos.extend(r["clone_url"] for r in data)
                 page += 1
         except Exception as e:
             print(f"ERROR: Failed to list repos for org '{org_name}': {e}")
@@ -572,11 +573,11 @@ def _list_github_org_repos(org_name):
     return repos
 
 
-def _scan_git_repos(repo_list, lockfile_regex):
+def _scan_git_repos(repo_list, lockfile_regex, file_iocs):
     process_count = max(1, multiprocessing.cpu_count() // 2)
     logging.info("starting scan processes: process_count=%d", process_count)
 
-    args_list = [(repo, lockfile_regex) for repo in repo_list]
+    args_list = [(repo, lockfile_regex, file_iocs) for repo in repo_list]
 
     with multiprocessing.Pool(process_count) as p:
         for results in p.imap_unordered(check_repo, args_list):
@@ -599,7 +600,7 @@ def _parse_args():
         "--git-repo",
         nargs="+",
         metavar="REPO",
-        help="Git repositories to scan (format: owner/repo or host/owner/repo)",
+        help="Git repositories to scan (clone URL, e.g. git@github.com:owner/repo.git)",
     )
     parser.add_argument(
         "--github-org",
@@ -646,6 +647,7 @@ def main():
 
     if run_git_scan:
         lockfile_regex = _build_lockfile_regex(malicious_packages)
+        file_iocs = _load_git_file_iocs()
 
         repo_list = list(args.git_repo or [])
         for org in args.github_org or []:
@@ -656,7 +658,7 @@ def main():
 
         if repo_list:
             print(f"\nScanning {len(repo_list)} git repo(s) for IoCs...\n")
-            for finding in _scan_git_repos(repo_list, lockfile_regex):
+            for finding in _scan_git_repos(repo_list, lockfile_regex, file_iocs):
                 if not found:
                     found = True
                     print(
