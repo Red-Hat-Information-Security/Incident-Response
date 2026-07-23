@@ -3,26 +3,22 @@ Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/extract,Temporary dir
 Sha1-Hulud: The Second Coming,directory,**/.truffler-cache,Hidden directory created in user home for Trufflehog binary storage
 Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/trufflehog,Downloaded Trufflehog binary (Linux/Mac)
 Sha1-Hulud: The Second Coming,directory,**/.truffler-cache/trufflehog.exe,Downloaded Trufflehog binary (Windows)
+Sha1-Hulud: The Second Coming,directory,/tmp/kitty-*,Suspicious kitty artifact directory
+Sha1-Hulud: The Second Coming,directory,/private/tmp/kitty-*,Suspicious kitty artifact directory
+Sha1-Hulud: The Second Coming,directory,/var/folders/**/kitty-*,Suspicious kitty artifact directory
+Sha1-Hulud: The Second Coming,directory,/private/var/folders/**/kitty-*,Suspicious kitty artifact directory
 Sha1-Hulud: The Second Coming,file,**/bun_environment.js,Malicious post-install script in node_modules directories
-Sha1-Hulud: The Second Coming,file,**/.claude/index.js,Malicious Claude index.js injected into repository
-Sha1-Hulud: The Second Coming,file,**/.github/setup.js,Malicious GitHub setup script
-Sha1-Hulud: The Second Coming,file,**/.claude/setup.mjs,Malicious Claude setup module
-Sha1-Hulud: The Second Coming,file,**/.vscode/setup.mjs,Malicious VS Code setup module
+Sha1-Hulud: The Second Coming,file,"**/.claude/index.js:const\s+_0x[a-f0-9]{2,6}=_0x[a-f0-9]{2,6};\(function\(_0x[a-f0-9]{2,6},_0x[a-f0-9]{2,6}\)\{",Obfuscated Shai-Hulud index.js payload
+Sha1-Hulud: The Second Coming,file,"**/.github/setup.js:try\{eval\(function\(s,n\)\{return\ s\.replace\(/\[a\-zA\-Z\]/g,function\(c\)\{var\ b=c<=""Z""\?65:97;return\ String\.fromCharCode\(\(c\.charCodeAt\(0\)\-b\+n\)%26\+b\)\}\)\}\(\[",Malicious GitHub setup script with ROT cipher eval
+Sha1-Hulud: The Second Coming,file,"**/.claude/setup.mjs:try\{eval\(function\(s,n\)\{return\ s\.replace\(/\[a\-zA\-Z\]/g,function\(c\)\{var\ b=c<=""Z""\?65:97;return\ String\.fromCharCode\(\(c\.charCodeAt\(0\)\-b\+n\)%26\+b\)\}\)\}\(\[",Malicious Claude setup module with ROT cipher eval
+Sha1-Hulud: The Second Coming,file,"**/.vscode/setup.mjs:try\{eval\(function\(s,n\)\{return\ s\.replace\(/\[a\-zA\-Z\]/g,function\(c\)\{var\ b=c<=""Z""\?65:97;return\ String\.fromCharCode\(\(c\.charCodeAt\(0\)\-b\+n\)%26\+b\)\}\)\}\(\[",Malicious VS Code setup module with ROT cipher eval
 Sha1-Hulud: The Second Coming,file,**/_index.js,Suspicious _index.js file
-Sha1-Hulud: The Second Coming,file,**/.claude/settings.json:node\s+\.claude/setup\.mjs,Malicious Claude Code hook running node .claude/setup.mjs
-Sha1-Hulud: The Second Coming,file,**/.claude/settings.json:node\s+\.vscode/setup\.mjs,Malicious Claude Code hook running node .vscode/setup.mjs
-Sha1-Hulud: The Second Coming,file,**/.claude/settings.json:node\s+\.github/setup\.js,Malicious Claude Code hook running node .github/setup.js
-Sha1-Hulud: The Second Coming,file,**/.claude/settings.json:node\s+index\.js,Malicious Claude Code hook running node index.js
-Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+\.github/setup\.js,Malicious VS Code task running node .github/setup.js
-Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+\.vscode/setup\.mjs,Malicious VS Code task running node .vscode/setup.mjs
-Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+\.claude/setup\.mjs,Malicious VS Code task running node .claude/setup.mjs
-Sha1-Hulud: The Second Coming,file,**/.vscode/tasks.json:node\s+index\.js,Malicious VS Code task running node index.js
-Sha1-Hulud: The Second Coming,file,**/.claude/execution.js,Obfuscated Shai-Hulud payload
+Sha1-Hulud: The Second Coming,file,"**/.claude/execution.js:const\s+_0x[a-f0-9]{2,6}=_0x[a-f0-9]{2,6};\(function\(_0x[a-f0-9]{2,6},_0x[a-f0-9]{2,6}\)\{",Obfuscated Shai-Hulud payload
 Sha1-Hulud: The Second Coming,file,**/.github/workflows/codeql.yml:(?=.*secrets)(?=.*format-results),Malicious codeql.yml with secrets exfiltration
-Sha1-Hulud: The Second Coming,file,**/package-lock.json,Lockfile referencing compromised package versions
-Sha1-Hulud: The Second Coming,file_regex,/(tmp|private/tmp|var/folders|private/var/folders)/.*p[a-z0-9]{10,13}\.js$,Suspicious payload JavaScript file
-TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe.lock,lock file (12hr re-infection guard) (source: ramimac)
-TeamPCP: Supply Chain Attack,file,%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\msbuild.exe,Telnyx Windows dropper (AdaptixC2) (source: ramimac)
+Sha1-Hulud: The Second Coming,file_regex,"/(tmp|private/tmp|var/folders|private/var/folders)/.*p[a-z0-9]{10,13}\.js$",Suspicious payload JavaScript file
+Sha1-Hulud: The Second Coming,file_regex,/(tmp|private/tmp|var/folders|private/var/folders)/.*b-[^/]+/bun$,Bun binary in temp staging directory
+TeamPCP: Supply Chain Attack,file,${APPDATA}/Microsoft/Windows/Start Menu/Programs/Startup/msbuild.exe.lock,lock file (12hr re-infection guard) (source: ramimac)
+TeamPCP: Supply Chain Attack,file,${APPDATA}/Microsoft/Windows/Start Menu/Programs/Startup/msbuild.exe,Telnyx Windows dropper (AdaptixC2) (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/.config/audiomon/audiomon.py,Telnyx Linux backdoor (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/.config/sysmon/sysmon.js,checkmarx-util via VSCode ext (source: ramimac)
 TeamPCP: Supply Chain Attack,file,**/.config/sysmon/sysmon.py,RAT loader script
@@ -91,9 +87,9 @@ TeamPCP: Supply Chain Attack,hash,sha256:f66c1ea3b25ec95d0c6a07be92c761551e543a7
 TeamPCP: Supply Chain Attack,hash,sha256:f7084b0229dce605ccc5506b14acd4d954a496da4b6134a294844ca8d601970d,Linux-32bit (source: ramimac)
 UNC1069: Axios compromise,file,**/6202033.ps1,RAT loader script (source: datadog|endorlabs)
 UNC1069: Axios compromise,file,**/Library/Caches/com.apple.act.mond,RAT loader script (source: datadog|endorlabs)"
-UNC1069: Axios compromise,file,%LOCALAPPDATA%\Microsoft\CLR_v4.0\UsageLogs\wt.exe.log,%LOCALAPPDATA%\Microsoft\CLR_v4.0\UsageLogs\wt.exe.log (source: endorlabs)
-UNC1069: Axios compromise,file,%PROGRAMDATA%\system.bat,Windows: persistence script (re-fetches payload on login) (source: datadog)
-UNC1069: Axios compromise,file,%PROGRAMDATA%\wt.exe,Windows: renamed copy of PowerShell (source: datadog)
+UNC1069: Axios compromise,file,${LOCALAPPDATA}/Microsoft/CLR_v4.0/UsageLogs/wt.exe.log,${LOCALAPPDATA}/Microsoft/CLR_v4.0/UsageLogs/wt.exe.log (source: endorlabs)
+UNC1069: Axios compromise,file,${PROGRAMDATA}/system.bat,Windows: persistence script (re-fetches payload on login) (source: datadog)
+UNC1069: Axios compromise,file,${PROGRAMDATA}/wt.exe,Windows: renamed copy of PowerShell (source: datadog)
 UNC1069: Axios compromise,file,**/tmp/ld.py,RAT loader script
 UNC1069: Axios compromise,file,**/tmp/.*.scpt,/tmp/.XXXXXX.scpt (temporary AppleScript files) (source: endorlabs)
 UNC1069: Axios compromise,hash,sha256:58401c195fe0a6204b42f5f90995ece5fab74ce7c69c67a24c61a057325af668,plain-crypto-js-4.2.1.tgz (source: endorlabs)

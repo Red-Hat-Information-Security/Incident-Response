@@ -42,8 +42,6 @@ RHIS_HOST_IOC_DB_URL = (
     "https://raw.githubusercontent.com/Red-Hat-Information-Security/Incident-Response/"
     f"{DB_REF}/data/rhis-host-iocs.csv"
 )
-_TEMP_PREFIXES = ("/tmp", "/var/folders", "/private/tmp", "/private/var/folders")
-
 DISCLAIMER = """
 ===============================================================================
 DISCLAIMER
@@ -184,7 +182,7 @@ def _load_malicious_package_host_iocs():
                 raw = ioc["ioc_value"]
                 content_regex_str = None
                 parts = raw.split(":", 1)
-                if len(parts) == 2 and not parts[0].startswith("%"):
+                if len(parts) == 2:
                     raw = parts[0]
                     content_regex_str = parts[1]
                 if raw.startswith("**/"):
@@ -226,7 +224,7 @@ def _load_malicious_package_host_iocs():
                 content_regex = None
 
                 parts = raw_value.split(":", 1)
-                if len(parts) == 2 and not parts[0].startswith("%"):
+                if len(parts) == 2:
                     raw_value = parts[0]
                     content_regex = re.compile(parts[1])
 
@@ -264,84 +262,118 @@ def _check_host_iocs(host_path_iocs, path):
     return None
 
 
-def _build_lockfile_regex(malicious_packages):
-    npm_packages = {}
-    for purl in malicious_packages:
-        if not purl.startswith("pkg:npm/"):
-            continue
-        rest = unquote(purl[len("pkg:npm/"):])
-        at_idx = rest.rfind("@")
-        if at_idx <= 0:
-            continue
-        name = rest[:at_idx]
-        version = rest[at_idx + 1:]
-        npm_packages.setdefault(name, []).append(version)
+def _check_lockfile(filepath, malicious_packages):
+    try:
+        with open(filepath, encoding="UTF-8", errors="ignore") as f:
+            lockfile = json.load(f)
+    except Exception:
+        return
 
-    if not npm_packages:
+    # v2/v3
+    for key, info in lockfile.get("packages", {}).items():
+        if not key:
+            continue
+        name = key.rsplit("node_modules/", 1)[-1]
+        version = info.get("version", "")
+        if name and version:
+            purl = _new_purl("npm", name, version)
+            if purl in malicious_packages:
+                yield {
+                    "path": filepath,
+                    "finding": "Lockfile referencing compromised package: " + purl,
+                    "notes": malicious_packages[purl],
+                }
+
+    # v1
+    def check_deps(deps):
+        for name, info in deps.items():
+            version = info.get("version", "")
+            if name and version:
+                purl = _new_purl("npm", name, version)
+                if purl in malicious_packages:
+                    yield {
+                        "path": filepath,
+                        "finding": "Lockfile referencing compromised package: " + purl,
+                        "notes": malicious_packages[purl],
+                    }
+            yield from check_deps(info.get("dependencies", {}))
+
+    yield from check_deps(lockfile.get("dependencies", {}))
+
+
+def _parse_npm_cache_entry(key):
+    if not key.endswith(".tgz"):
         return None
 
-    parts = []
-    for name, versions in npm_packages.items():
-        part = '"' + re.escape(name) + r'"\s*:\s*"[^"\d]*('
-        part += "|".join(map(re.escape, versions))
-        part += r')[^"\d]*"'
-        parts.append(part)
+    http_idx = key.rfind("https://")
+    if http_idx < 0:
+        http_idx = key.rfind("http://")
+    if http_idx < 0:
+        return None
+    url = key[http_idx:]
 
-    return re.compile("|".join(parts))
+    sep_idx = url.find("/-/")
+    if sep_idx < 0:
+        return None
+
+    scheme_end = url.find("://")
+    if scheme_end < 0:
+        return None
+    after_scheme = url[scheme_end + 3:]
+    host_end = after_scheme.find("/")
+    if host_end < 0:
+        return None
+
+    name_part = after_scheme[host_end + 1:after_scheme.find("/-/")]
+    name = unquote(name_part).lower()
+
+    tarball = url[sep_idx + 3:]
+    unscoped = name.rsplit("/", 1)[-1]
+
+    prefix = unscoped + "-"
+    if not tarball.startswith(prefix):
+        return None
+    version = tarball[len(prefix):-4]
+
+    if not version or not version[0].isdigit():
+        return None
+
+    return name, version
 
 
-def _is_temp_path(path):
-    return any(path.startswith(p) for p in _TEMP_PREFIXES)
+def _check_npm_cache_dir(index_dir, malicious_packages):
+    for dirpath, _dirnames, filenames in os.walk(index_dir):
+        for filename in filenames:
+            filepath = os.path.join(dirpath, filename)
+            try:
+                with open(filepath, encoding="UTF-8", errors="ignore") as f:
+                    last_line = None
+                    for line in f:
+                        stripped = line.strip()
+                        if stripped:
+                            last_line = stripped
+                    if not last_line:
+                        continue
 
+                parts = last_line.split("\t", 1)
+                if len(parts) != 2:
+                    continue
 
-def _check_rcs_artifacts(filepath, filename, dirpath):
-    if (filename == "index.js"
-            and "/@redhat-cloud-services/" in filepath
-            and "/node_modules/" in filepath):
-        try:
-            if os.path.getsize(filepath) > 1_000_000:
-                yield {
-                    "path": filepath,
-                    "finding": "Suspicious large index.js in @redhat-cloud-services package",
-                    "notes": "Campaign: Sha1-Hulud: The Second Coming",
-                }
-        except OSError:
-            pass
+                entry = json.loads(parts[1])
+                parsed = _parse_npm_cache_entry(entry.get("key", ""))
+                if not parsed:
+                    continue
 
-    if (filename == "package.json"
-            and "/@redhat-cloud-services/" in filepath
-            and "/node_modules/" in filepath):
-        try:
-            with open(filepath, encoding="UTF-8") as f:
-                pkg = json.load(f)
-            if "preinstall" in pkg.get("scripts", {}):
-                yield {
-                    "path": filepath,
-                    "finding": "Preinstall hook in @redhat-cloud-services package",
-                    "notes": "Campaign: Sha1-Hulud: The Second Coming",
-                }
-        except Exception:
-            pass
-
-    if filename.endswith(".tgz") and "redhat-cloud" in filepath:
-        try:
-            if os.path.getsize(filepath) > 1_000_000:
-                yield {
-                    "path": filepath,
-                    "finding": "Large @redhat-cloud-services tarball in npm cache",
-                    "notes": "Campaign: Sha1-Hulud: The Second Coming",
-                }
-        except OSError:
-            pass
-
-    if _is_temp_path(filepath):
-        if filename == "bun" and "/b-" in dirpath:
-            yield {
-                "path": filepath,
-                "finding": "Bun binary in temp staging directory",
-                "notes": "Campaign: Sha1-Hulud: The Second Coming",
-            }
-
+                name, version = parsed
+                purl = _new_purl("npm", name, version)
+                if purl in malicious_packages:
+                    yield {
+                        "path": filepath,
+                        "finding": "Malicious Package (npm cache): " + purl,
+                        "notes": malicious_packages[purl],
+                    }
+            except Exception:
+                continue
 
 
 def _check_iocs(scan_root, malicious_packages, host_iocs):
@@ -354,14 +386,10 @@ def _check_iocs(scan_root, malicious_packages, host_iocs):
         if dir_finding:
             yield dir_finding
 
-        if _is_temp_path(dirpath):
-            for dirname in dirnames:
-                if dirname.startswith("kitty-"):
-                    yield {
-                        "path": os.path.join(dirpath, dirname),
-                        "finding": "Suspicious kitty artifact directory",
-                        "notes": "Campaign: Sha1-Hulud: The Second Coming",
-                    }
+        if dirpath.endswith("/_cacache") and "index-v5" in dirnames:
+            index_dir = os.path.join(dirpath, "index-v5")
+            yield from _check_npm_cache_dir(index_dir, malicious_packages)
+            dirnames.remove("index-v5")
 
         for filename in filenames:
             filepath = os.path.join(dirpath, filename)
@@ -380,12 +408,12 @@ def _check_iocs(scan_root, malicious_packages, host_iocs):
                 if pkg_finding:
                     yield pkg_finding
 
+            if filename == "package-lock.json":
+                yield from _check_lockfile(filepath, malicious_packages)
+
             file_finding = _check_host_iocs(host_file_iocs, filepath)
             if file_finding:
                 yield file_finding
-
-            for rcs_finding in _check_rcs_artifacts(filepath, filename, dirpath):
-                yield rcs_finding
 
 
 valid_repo_hosts = set()
@@ -637,15 +665,6 @@ def main():
     git_file_iocs = None
     if run_host_scan or run_git_scan:
         host_iocs, git_file_iocs = _load_malicious_package_host_iocs()
-
-    if run_git_scan:
-        lockfile_regex = _build_lockfile_regex(malicious_packages)
-        if lockfile_regex:
-            git_file_iocs["package-lock.json"] = {
-                "content_regex": lockfile_regex,
-                "campaign_name": "Malicious Package",
-                "ioc_description": "Lockfile referencing compromised package versions",
-            }
 
     found = False
 
