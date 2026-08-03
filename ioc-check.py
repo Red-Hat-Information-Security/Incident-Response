@@ -273,6 +273,9 @@ def _check_lockfile(filepath, malicious_packages):
     for key, info in lockfile.get("packages", {}).items():
         if not key:
             continue
+        if not isinstance(info, dict):
+            logging.warning("Deformed file in %s (key %r): expected dict, got %s", filepath, key, type(info).__name__)
+            continue
         name = key.rsplit("node_modules/", 1)[-1]
         version = info.get("version", "")
         if name and version:
@@ -287,6 +290,9 @@ def _check_lockfile(filepath, malicious_packages):
     # v1
     def check_deps(deps):
         for name, info in deps.items():
+            if not isinstance(info, dict):
+                logging.warning("Deformed file in %s (dep %r): expected dict, got %s", filepath, name, type(info).__name__)
+                continue
             version = info.get("version", "")
             if name and version:
                 purl = _new_purl("npm", name, version)
