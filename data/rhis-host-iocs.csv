@@ -90,3 +90,9 @@ UNC1069: Axios compromise,hash,sha256:f7d335205b8d7b20208fb3ef93ee6dc817905dc3ae
 UNC1069: Axios compromise,hash,sha256:fcb81618bb15edfdedfb638b4c08a2af9cac9ecfa551af135a8402bf980375cf,Linux second-stage payload (Python script) (source: datadog|endorlabs)
 UNC1069: Axios compromise,windows_registry_key,HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\MicrosoftUpdate,HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\MicrosoftUpdate (source: endorlabs)
 UNC1069: Axios compromise,windows_registry_key,HKCU\Software\Microsoft\Windows\CurrentVersion\Run\MicrosoftUpdate,Windows: Run key for persistence (source: datadog)
+Sha1-Hulud: Here We Go Again,hash,9fc2570b7cef51c1b8df116d144d11ff4096357be7d2c4c6367cfc2509cf1bcc,math_init.js / Math_Symbol.js main payload
+Sha1-Hulud: Here We Go Again,hash,fd3ca4007b225fdf8de7af4345a19179d5efa8c4bb9205f88cda806e5684b1eb,setup.mjs bootstrap loader
+Sha1-Hulud: Here We Go Again,hash,927387d0cfac1118df4b383decc2ea6ba49c9d2f98b47098bcbcba1efc026e1f,Malicious VS Code tasks.json
+Sha1-Hulud: Here We Go Again,hash,14eb4ce01dd4307759887ff819359b70d7d9ff709ecde039a5abc1aac325b128,Malicious Claude settings.json
+Sha1-Hulud: Here We Go Again,hash,3f3f42d072bd36860ab7bd7fb5e10ac0d22c741c13c89505ccd6ec0ea572eea7,Injected GitHub Actions workflow
+Sha1-Hulud: Here We Go Again,hash,29ac906c8bd801dfe1cb39596197df49f80fff2270b3e7fbab52278c24e4f1a7,GitHub Actions runner memory scraper
